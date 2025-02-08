@@ -3,7 +3,7 @@ import {
 	TextFilterValue,
 	textFilterValue,
 } from './text-filter-field'
-import { FilterField } from './types'
+import { FilterField, FilterFields } from './types'
 
 export type LimitFilterField = FilterField<TextFilterValue> & {
 	type: 'limit'
@@ -18,4 +18,10 @@ export function limitFilterField(): LimitFilterField {
 		}),
 		type: 'limit',
 	}
+}
+
+export function isLimitFilterField(
+	field: FilterFields | undefined
+): field is LimitFilterField {
+	return field?.type === 'limit'
 }

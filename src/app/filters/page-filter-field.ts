@@ -1,5 +1,5 @@
-import { signal } from '@angular/core'
-import { FilterField } from './types'
+import { computed, signal } from '@angular/core'
+import { FilterField, FilterFields } from './types'
 
 export type PageFilterValue = {
 	value: number
@@ -15,8 +15,8 @@ export function pageFilterValue(
 }
 
 export type PageFilterFieldConfig = {
-	initialValue: PageFilterValue
-	defaultValue: PageFilterValue
+	initialValue: Partial<PageFilterValue>
+	defaultValue: Partial<PageFilterValue>
 	active: boolean
 }
 
@@ -28,12 +28,19 @@ export type PageFilterField = FilterField<PageFilterValue> & {
 export function pageFilterField(
 	config: Partial<PageFilterFieldConfig> = {}
 ): PageFilterField {
-	const defaultValue = config.defaultValue ?? pageFilterValue()
-	const _value = signal(config.initialValue ?? defaultValue)
+	const defaultValue = pageFilterValue(config.defaultValue)
+	const _value = signal<PageFilterValue>({
+		...defaultValue,
+		...config.initialValue,
+	})
 	const _active = signal(config.active ?? false)
 
-	function set(value: PageFilterValue): void {
-		_value.set(value)
+	const isDirty = computed(
+		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
+	)
+
+	function set(value: Partial<PageFilterValue>): void {
+		_value.update(v => ({ ...v, ...value }))
 	}
 
 	function reset(): void {
@@ -55,7 +62,7 @@ export function pageFilterField(
 
 	return {
 		type: 'page',
-		defaultValue,
+		isDirty,
 		// SIGNALS
 		value: _value.asReadonly(),
 		active: _active.asReadonly(),
@@ -65,4 +72,10 @@ export function pageFilterField(
 		serialize,
 		nextPage,
 	}
+}
+
+export function isPageFilterField(
+	field: FilterFields | undefined
+): field is PageFilterField {
+	return field?.type === 'page'
 }

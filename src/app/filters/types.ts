@@ -8,8 +8,8 @@ export interface Pairs {
 }
 
 export type FilterField<T> = {
-	defaultValue: T
 	active: Signal<boolean>
+	isDirty: Signal<boolean>
 	value: Signal<T>
 	set: (value: T) => void
 	serialize: (fieldName: string, params: Pairs) => void

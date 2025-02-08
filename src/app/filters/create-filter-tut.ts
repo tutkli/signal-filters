@@ -1,6 +1,6 @@
 import { computed } from '@angular/core'
-import { limitFilterField } from './limit-filter-field'
-import { pageFilterField } from './page-filter-field'
+import { isLimitFilterField, limitFilterField } from './limit-filter-field'
+import { isPageFilterField, pageFilterField } from './page-filter-field'
 import {
 	ExtractFieldValue,
 	FilterField,
@@ -24,12 +24,8 @@ export function createFilter<
 			.filter(
 				key => key !== FilterFieldName.page && key !== FilterFieldName.limit
 			)
-			.some(fieldKey => {
-				const field = getField(fieldKey)
-				return (
-					JSON.stringify(field.value()) !== JSON.stringify(field.defaultValue)
-				)
-			})
+			.map(fieldKey => getField(fieldKey))
+			.some(field => field.isDirty())
 	})
 
 	const value = computed(() => {
@@ -78,14 +74,12 @@ export function createFilter<
 	function initFields() {
 		return {
 			...initialFields,
-			page:
-				initialFields.page && initialFields.page.type === 'page'
-					? initialFields.page
-					: pageFilterField(),
-			limit:
-				initialFields.limit && initialFields.limit.type === 'limit'
-					? initialFields.limit
-					: limitFilterField(),
+			page: isPageFilterField(initialFields.page)
+				? initialFields.page
+				: pageFilterField(),
+			limit: isLimitFilterField(initialFields.limit)
+				? initialFields.limit
+				: limitFilterField(),
 		}
 	}
 

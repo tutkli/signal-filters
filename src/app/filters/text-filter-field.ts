@@ -1,52 +1,5 @@
-import { signal } from '@angular/core'
-import { FilterField } from './types'
-
-// export class TextFilterValue {
-//   value: string;
-//   selected: boolean;
-//
-//   constructor({ value = '', selected = true }: Partial<TextFilterValue> = {}) {
-//     this.value = value;
-//     this.selected = selected;
-//   }
-// }
-//
-// export interface TextFilterFieldConfig {
-//   initialValue: TextFilterValue;
-//   defaultValue: TextFilterValue;
-//   active: boolean;
-// }
-//
-// export class TextFilterField implements FilterField<TextFilterValue> {
-//     defaultValue = new TextFilterValue();
-//
-//     private readonly _active = signal(false);
-//     active = this._active.asReadonly();
-//
-//     private readonly _value = signal(this.defaultValue);
-//     value = this._value.asReadonly();
-//
-//     constructor({
-//     initialValue = new TextFilterValue(),
-//     defaultValue = new TextFilterValue(),
-//     active = false,
-//   }: Partial<TextFilterFieldConfig> = {}) {
-//     this._value.set(initialValue);
-//     this.defaultValue = defaultValue;
-//     this._active.set(active);
-//   }
-//
-//     set(value: TextFilterValue): void {
-//         this._value.set(value);
-//     }
-//
-//     reset(): void {
-//         this._value.set(this.defaultValue);
-//     }
-//
-//     serialize(fieldName: string): void {
-//     }
-// }
+import { computed, signal } from '@angular/core'
+import { FilterField, FilterFields } from './types'
 
 export type TextFilterValue = {
 	value: string
@@ -62,8 +15,8 @@ export function textFilterValue(
 }
 
 export type TextFilterFieldConfig = {
-	initialValue: TextFilterValue
-	defaultValue: TextFilterValue
+	initialValue: Partial<TextFilterValue>
+	defaultValue: Partial<TextFilterValue>
 	active: boolean
 }
 
@@ -72,12 +25,19 @@ export type TextFilterField = FilterField<TextFilterValue> & { type: 'text' }
 export function textFilterField(
 	config: Partial<TextFilterFieldConfig> = {}
 ): TextFilterField {
-	const defaultValue = config.defaultValue ?? textFilterValue()
-	const _value = signal(config.initialValue ?? defaultValue)
+	const defaultValue = textFilterValue(config.defaultValue)
+	const _value = signal<TextFilterValue>({
+		...defaultValue,
+		...config.initialValue,
+	})
 	const _active = signal(config.active ?? false)
 
-	function set(value: TextFilterValue): void {
-		_value.set(value)
+	const isDirty = computed(
+		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
+	)
+
+	function set(value: Partial<TextFilterValue>): void {
+		_value.update(v => ({ ...v, ...value }))
 	}
 
 	function reset(): void {
@@ -90,7 +50,7 @@ export function textFilterField(
 
 	return {
 		type: 'text',
-		defaultValue,
+		isDirty,
 		// SIGNALS
 		value: _value.asReadonly(),
 		active: _active.asReadonly(),
@@ -99,4 +59,10 @@ export function textFilterField(
 		reset,
 		serialize,
 	}
+}
+
+export function isTextFilterField(
+	field: FilterFields | undefined
+): field is TextFilterField {
+	return field?.type === 'text'
 }
