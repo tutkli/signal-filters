@@ -35,7 +35,7 @@ import { textFilterField } from './filters/text-filter-field'
 				<button (click)="filter.reset()">Reset All</button>
 			</div>
 			<div>Filter is dirty: {{ filter.isDirty() }}</div>
-			<div>Current filter value: {{ filter.value() | json }}</div>
+			<pre>{{ filter.value() | json }}</pre>
 		</div>
 	`,
 })

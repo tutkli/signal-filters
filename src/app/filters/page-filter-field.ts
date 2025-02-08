@@ -1,26 +1,13 @@
 import { computed, signal } from '@angular/core'
 import { FilterField, FilterFields } from './types'
 
-export type PageFilterValue = {
-	value: number
-	selected: boolean
-}
-export function pageFilterValue(
-	config: Partial<PageFilterValue> = {}
-): PageFilterValue {
-	return {
-		value: config.value ?? 1,
-		selected: config.selected ?? true,
-	}
-}
-
 export type PageFilterFieldConfig = {
-	initialValue: Partial<PageFilterValue>
-	defaultValue: Partial<PageFilterValue>
+	initialValue: number
+	defaultValue: number
 	active: boolean
 }
 
-export type PageFilterField = FilterField<PageFilterValue> & {
+export type PageFilterField = FilterField<number> & {
 	type: 'page'
 	nextPage: () => void
 }
@@ -28,19 +15,16 @@ export type PageFilterField = FilterField<PageFilterValue> & {
 export function pageFilterField(
 	config: Partial<PageFilterFieldConfig> = {}
 ): PageFilterField {
-	const defaultValue = pageFilterValue(config.defaultValue)
-	const _value = signal<PageFilterValue>({
-		...defaultValue,
-		...config.initialValue,
-	})
+	const defaultValue = config.defaultValue ?? 1
+	const _value = signal(config.initialValue ?? defaultValue)
 	const _active = signal(config.active ?? false)
 
 	const isDirty = computed(
 		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
 	)
 
-	function set(value: Partial<PageFilterValue>): void {
-		_value.update(v => ({ ...v, ...value }))
+	function set(value: number): void {
+		_value.set(value)
 	}
 
 	function reset(): void {
@@ -52,12 +36,7 @@ export function pageFilterField(
 	}
 
 	function nextPage() {
-		_value.update(v => {
-			return {
-				...v,
-				value: v.value + 1,
-			}
-		})
+		_value.update(v => v + 1)
 	}
 
 	return {

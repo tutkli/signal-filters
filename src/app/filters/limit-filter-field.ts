@@ -1,22 +1,49 @@
-import {
-	textFilterField,
-	TextFilterValue,
-	textFilterValue,
-} from './text-filter-field'
+import { computed, signal } from '@angular/core'
 import { FilterField, FilterFields } from './types'
 
-export type LimitFilterField = FilterField<TextFilterValue> & {
+export type LimitFilterField = FilterField<number> & {
 	type: 'limit'
 }
 
-export function limitFilterField(): LimitFilterField {
+export type LimitFilterFieldConfig = {
+	initialValue: number
+	defaultValue: number
+	active: boolean
+}
+
+export function limitFilterField(
+	config: Partial<LimitFilterFieldConfig> = {}
+): LimitFilterField {
+	const defaultValue = config.defaultValue ?? 20
+	const _value = signal(config.initialValue ?? defaultValue)
+	const _active = signal(config.active ?? false)
+
+	const isDirty = computed(
+		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
+	)
+
+	function set(value: number): void {
+		_value.set(value)
+	}
+
+	function reset() {
+		_value.set(defaultValue)
+	}
+
+	function serialize() {
+		// implementation here
+	}
+
 	return {
-		...textFilterField({
-			initialValue: textFilterValue({ value: '20' }),
-			defaultValue: textFilterValue({ value: '20' }),
-			active: false,
-		}),
 		type: 'limit',
+		isDirty,
+		// SIGNALS
+		value: _value.asReadonly(),
+		active: _active.asReadonly(),
+		// METHODS
+		set,
+		reset,
+		serialize,
 	}
 }
 
