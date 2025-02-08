@@ -10,27 +10,32 @@ import {
 	FilterValueChanges,
 } from './types'
 
-export class Filter<T extends Partial<Record<FilterFieldName, FilterFields>>> {
-	fields: FilterFieldsWithPagination<T>
-	fieldKeys: (keyof FilterFieldsWithPagination<T>)[]
+export function createFilter<
+	T extends Partial<Record<FilterFieldName, FilterFields>>,
+>(initialFields: T) {
+	const fields = initFields()
 
-	isDirty = computed(() => {
-		return this.fieldKeys
+	const fieldKeys = Object.keys(
+		fields
+	) as (keyof FilterFieldsWithPagination<T>)[]
+
+	const isDirty = computed(() => {
+		return fieldKeys
 			.filter(
 				key => key !== FilterFieldName.page && key !== FilterFieldName.limit
 			)
 			.some(fieldKey => {
-				const field = this.getField(fieldKey)
+				const field = getField(fieldKey)
 				return (
 					JSON.stringify(field.value()) !== JSON.stringify(field.defaultValue)
 				)
 			})
 	})
 
-	value = computed(() => {
-		return this.fieldKeys.reduce(
+	const value = computed(() => {
+		return fieldKeys.reduce(
 			(acc, key) => {
-				const field = this.getField(key)
+				const field = getField(key)
 				acc[key] = field.value() as FilterValueChanges<
 					FilterFieldsWithPagination<T>
 				>[typeof key]
@@ -40,51 +45,57 @@ export class Filter<T extends Partial<Record<FilterFieldName, FilterFields>>> {
 		)
 	})
 
-	// serializedValue = computed(() => {})
-
-	constructor(fields: T) {
-		const pageField =
-			fields.page instanceof PageFilterField
-				? fields.page
-				: new PageFilterField()
-		const limitField =
-			fields.limit instanceof LimitFilterField
-				? fields.limit
-				: new LimitFilterField()
-
-		this.fields = { ...fields, page: pageField, limit: limitField }
-		this.fieldKeys = Object.keys(
-			this.fields
-		) as (keyof FilterFieldsWithPagination<T>)[]
+	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
+		return fields[key] as FilterField<
+			ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
+		>
 	}
 
-	set<K extends keyof FilterFieldsWithPagination<T>>(
-		fields: Partial<{
+	function set<K extends keyof FilterFieldsWithPagination<T>>(
+		newFields: Partial<{
 			[key in K]: ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
 		}>,
 		resetPage = true
 	) {
-		for (const fieldKey in fields) {
-			const field = this.getField(fieldKey as K)
+		for (const fieldKey in newFields) {
+			const field = getField(fieldKey as K)
 			field.set(
-				fields[fieldKey as K] as ExtractFieldValue<
+				newFields[fieldKey as K] as ExtractFieldValue<
 					FilterFieldsWithPagination<T>[K]
 				>
 			)
 		}
-		if (resetPage) this.fields.page.reset()
+		if (resetPage) getField('page').reset()
 	}
 
-	reset(fields?: (keyof FilterFieldsWithPagination<T>)[]) {
-		const fieldsToReset = fields ?? this.fieldKeys
-		for (const field of fieldsToReset) {
-			this.getField(field).reset()
+	function reset(fieldsToReset?: (keyof FilterFieldsWithPagination<T>)[]) {
+		const fieldsToProcess = fieldsToReset ?? fieldKeys
+		for (const field of fieldsToProcess) {
+			getField(field).reset()
 		}
 	}
 
-	private getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
-		return this.fields[key] as FilterField<
-			ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
-		>
+	function initFields() {
+		return {
+			...initialFields,
+			page:
+				initialFields.page instanceof PageFilterField
+					? initialFields.page
+					: new PageFilterField(),
+			limit:
+				initialFields.limit instanceof LimitFilterField
+					? initialFields.limit
+					: new LimitFilterField(),
+		}
+	}
+
+	return {
+		fields,
+		// SIGNALS
+		isDirty,
+		value,
+		// METHODS
+		set,
+		reset,
 	}
 }

@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common'
 import { Component } from '@angular/core'
-import { Filter } from './filters/create-filter-tut'
+import { createFilter } from './filters/create-filter-tut'
 import { TextFilterField, TextFilterValue } from './filters/text-filter-field'
 
 @Component({
@@ -40,9 +40,13 @@ import { TextFilterField, TextFilterValue } from './filters/text-filter-field'
 	`,
 })
 export class AppComponent {
-	filter = new Filter({
+	filter = createFilter({
 		q: new TextFilterField(),
 		search: new TextFilterField(),
+	})
+
+	other = createFilter({
+		q: new TextFilterField(),
 	})
 
 	updateQ(value: string) {
