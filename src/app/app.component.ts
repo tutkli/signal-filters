@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common'
 import { Component } from '@angular/core'
-import { createFilter } from './filters/create-filter-tut'
+import { createFilter } from './filters/create-filter'
 import { textFilterField } from './filters/text-filter-field'
 
 @Component({

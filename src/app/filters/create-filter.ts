@@ -1,124 +1,95 @@
-import {computed, Signal, signal, WritableSignal} from "@angular/core";
+import { computed } from '@angular/core'
+import { isLimitFilterField, limitFilterField } from './limit-filter-field'
+import { isPageFilterField, pageFilterField } from './page-filter-field'
+import {
+	ExtractFieldValue,
+	FilterField,
+	FilterFieldName,
+	FilterFields,
+	FilterFieldsWithPagination,
+	FilterValueChanges,
+} from './types'
 
-// Filter field types
-type FilterFieldName = 'q' | 'visible' | 'status' | 'category'; // add more as needed
+export function createFilter<
+	T extends Partial<Record<FilterFieldName, FilterFields>>,
+>(initialFields: T) {
+	const fields = initFields()
 
-// Base interface for all filter fields
-interface BaseFilterField<T> {
-  value: Signal<T>;
-  defaultValue: T;
-  active: Signal<boolean>;
-  selected: Signal<boolean>;
-  serialize: () => string | null;
-}
+	const fieldKeys = Object.keys(
+		fields
+	) as (keyof FilterFieldsWithPagination<T>)[]
 
-// Specific filter field types
-interface TextFilterField extends BaseFilterField<string> {
-  type: 'text';
-}
+	const isDirty = computed(() => {
+		return fieldKeys
+			.filter(
+				key => key !== FilterFieldName.page && key !== FilterFieldName.limit
+			)
+			.map(fieldKey => getField(fieldKey))
+			.some(field => field.isDirty())
+	})
 
-interface BooleanFilterField extends BaseFilterField<boolean> {
-  type: 'boolean';
-}
+	const value = computed(() => {
+		return fieldKeys.reduce(
+			(acc, key) => {
+				const field = getField(key)
+				acc[key] = field.value() as FilterValueChanges<
+					FilterFieldsWithPagination<T>
+				>[typeof key]
+				return acc
+			},
+			{} as FilterValueChanges<FilterFieldsWithPagination<T>>
+		)
+	})
 
-interface NumberFilterField extends BaseFilterField<number> {
-  type: 'number';
-}
+	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
+		return fields[key] as FilterField<
+			ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
+		>
+	}
 
-// Combined type for all possible filter fields
-type FilterField = TextFilterField | BooleanFilterField | NumberFilterField;
+	function set<K extends keyof FilterFieldsWithPagination<T>>(
+		newFields: Partial<{
+			[key in K]: ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
+		}>,
+		resetPage = true
+	) {
+		for (const fieldKey in newFields) {
+			const field = getField(fieldKey as K)
+			field.set(
+				newFields[fieldKey as K] as ExtractFieldValue<
+					FilterFieldsWithPagination<T>[K]
+				>
+			)
+		}
+		if (resetPage) getField('page').reset()
+	}
 
-// Filter configuration type
-type FilterConfig = {
-  [K in FilterFieldName]?: {
-    type: FilterField['type'];
-    defaultValue: any;
-  };
-}
+	function reset(fieldsToReset?: (keyof FilterFieldsWithPagination<T>)[]) {
+		const fieldsToProcess = fieldsToReset ?? fieldKeys
+		for (const field of fieldsToProcess) {
+			getField(field).reset()
+		}
+	}
 
-export function createFilter<T extends FilterConfig>(config: T) {
-  // Create signals for each filter field
-  const fields = new Map<FilterFieldName, FilterField>();
+	function initFields() {
+		return {
+			...initialFields,
+			page: isPageFilterField(initialFields.page)
+				? initialFields.page
+				: pageFilterField(),
+			limit: isLimitFilterField(initialFields.limit)
+				? initialFields.limit
+				: limitFilterField(),
+		}
+	}
 
-  // Create the filter state
-  const isDirtySignal = signal(false);
-
-  // Initialize fields based on config
-  for (const [fieldName, fieldConfig] of Object.entries(config)) {
-    const valueSignal = signal(fieldConfig.defaultValue);
-    const activeSignal = signal(true);
-    const selectedSignal = signal(false);
-
-    const field = {
-      type: fieldConfig.type,
-      value: valueSignal,
-      defaultValue: fieldConfig.defaultValue,
-      active: activeSignal,
-      selected: selectedSignal,
-      serialize: () => {
-        const value = valueSignal();
-        if (!activeSignal() || value === fieldConfig.defaultValue) {
-          return null;
-        }
-        return String(value);
-      }
-    } as FilterField;
-
-    fields.set(fieldName as FilterFieldName, field);
-  }
-
-  // Create computed signal for combined filter values
-  const filterValue = computed(() => {
-    const result: Record<string, any> = {};
-    fields.forEach((field, name) => {
-      if (field.active()) {
-        result[name] = field.value();
-      }
-    });
-    return result;
-  });
-
-  return {
-    value: filterValue,
-    isDirty: isDirtySignal,
-
-    // Update a specific field value
-    updateField: (fieldName: FilterFieldName, value: any) => {
-      const field = fields.get(fieldName);
-      if (field) {
-        (field.value as WritableSignal<any>).set(value);
-        isDirtySignal.set(true);
-      }
-    },
-
-    // Reset all fields or a specific field
-    reset: (fieldName?: FilterFieldName) => {
-      if (fieldName) {
-        const field = fields.get(fieldName);
-        if (field) {
-          (field.value as WritableSignal<any>).set(field.defaultValue);
-        }
-      } else {
-        fields.forEach(field => {
-          (field.value as WritableSignal<any>).set(field.defaultValue);
-        });
-      }
-      isDirtySignal.set(false);
-    },
-
-    // Serialize all fields
-    serialize: () => {
-      const params = new URLSearchParams();
-      fields.forEach((field, name) => {
-        const serialized = field.serialize();
-        if (serialized !== null) {
-          params.set(name, serialized);
-        }
-      });
-      return params.toString();
-    },
-
-    // Get a specific field
-    getField: (fieldName: FilterFieldName) => fields.get(fieldName),
-  };
+	return {
+		fields,
+		// SIGNALS
+		isDirty,
+		value,
+		// METHODS
+		set,
+		reset,
+	}
 }
