@@ -1,6 +1,6 @@
 import { computed } from '@angular/core'
-import { LimitFilterField } from './limit-filter-field'
-import { PageFilterField } from './page-filter-field'
+import { limitFilterField } from './limit-filter-field'
+import { pageFilterField } from './page-filter-field'
 import {
 	ExtractFieldValue,
 	FilterField,
@@ -79,13 +79,13 @@ export function createFilter<
 		return {
 			...initialFields,
 			page:
-				initialFields.page instanceof PageFilterField
+				initialFields.page && initialFields.page.type === 'page'
 					? initialFields.page
-					: new PageFilterField(),
+					: pageFilterField(),
 			limit:
-				initialFields.limit instanceof LimitFilterField
+				initialFields.limit && initialFields.limit.type === 'limit'
 					? initialFields.limit
-					: new LimitFilterField(),
+					: limitFilterField(),
 		}
 	}
 

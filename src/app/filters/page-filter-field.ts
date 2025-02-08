@@ -1,53 +1,68 @@
-import {FilterField} from "./types";
-import {signal} from "@angular/core";
+import { signal } from '@angular/core'
+import { FilterField } from './types'
 
-export class PageFilterValue {
-  value: number;
-  selected: boolean;
-
-  constructor({ value = 1, selected = true }: Partial<PageFilterValue> = {}) {
-    this.value = value;
-    this.selected = selected;
-  }
+export type PageFilterValue = {
+	value: number
+	selected: boolean
 }
-export interface PageFilterFieldConfig {
-  initialValue: PageFilterValue;
-  defaultValue: PageFilterValue;
-  active: boolean;
+export function pageFilterValue(
+	config: Partial<PageFilterValue> = {}
+): PageFilterValue {
+	return {
+		value: config.value ?? 1,
+		selected: config.selected ?? true,
+	}
 }
 
+export type PageFilterFieldConfig = {
+	initialValue: PageFilterValue
+	defaultValue: PageFilterValue
+	active: boolean
+}
 
-export class PageFilterField implements FilterField<PageFilterValue> {
-    defaultValue = new PageFilterValue();
+export type PageFilterField = FilterField<PageFilterValue> & {
+	type: 'page'
+	nextPage: () => void
+}
 
-    private readonly _active = signal(false);
-    active = this._active.asReadonly();
+export function pageFilterField(
+	config: Partial<PageFilterFieldConfig> = {}
+): PageFilterField {
+	const defaultValue = config.defaultValue ?? pageFilterValue()
+	const _value = signal(config.initialValue ?? defaultValue)
+	const _active = signal(config.active ?? false)
 
-    private readonly _value = signal(this.defaultValue);
-    value = this._value.asReadonly();
+	function set(value: PageFilterValue): void {
+		_value.set(value)
+	}
 
-    constructor({
-    initialValue = new PageFilterValue(),
-    defaultValue = new PageFilterValue(),
-    active = false,
-  }: Partial<PageFilterFieldConfig> = {}) {
-    this._value.set(initialValue);
-    this.defaultValue = defaultValue;
-    this._active.set(active);
-  }
+	function reset(): void {
+		_value.set(defaultValue)
+	}
 
-    set(value: PageFilterValue): void {
-        this._value.set(value);
-    }
+	function serialize(fieldName: string): void {
+		// implementation here
+	}
 
-    reset(): void {
-        this._value.set(this.defaultValue);
-    }
+	function nextPage() {
+		_value.update(v => {
+			return {
+				...v,
+				value: v.value + 1,
+			}
+		})
+	}
 
-    serialize(fieldName: string): void {
-    }
-
-    nextPage() {
-        this.set(new PageFilterValue({ value: this.value().value + 1 }));
-    }
+	return {
+		type: 'page',
+		defaultValue,
+		// SIGNALS
+		value: _value.asReadonly(),
+		active: _active.asReadonly(),
+		// METHODS
+		set,
+		reset,
+		serialize,
+		nextPage,
+	}
 }

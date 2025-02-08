@@ -1,49 +1,102 @@
-import {signal} from "@angular/core";
-import {FilterField} from "./types";
+import { signal } from '@angular/core'
+import { FilterField } from './types'
 
-export class TextFilterValue {
-  value: string;
-  selected: boolean;
+// export class TextFilterValue {
+//   value: string;
+//   selected: boolean;
+//
+//   constructor({ value = '', selected = true }: Partial<TextFilterValue> = {}) {
+//     this.value = value;
+//     this.selected = selected;
+//   }
+// }
+//
+// export interface TextFilterFieldConfig {
+//   initialValue: TextFilterValue;
+//   defaultValue: TextFilterValue;
+//   active: boolean;
+// }
+//
+// export class TextFilterField implements FilterField<TextFilterValue> {
+//     defaultValue = new TextFilterValue();
+//
+//     private readonly _active = signal(false);
+//     active = this._active.asReadonly();
+//
+//     private readonly _value = signal(this.defaultValue);
+//     value = this._value.asReadonly();
+//
+//     constructor({
+//     initialValue = new TextFilterValue(),
+//     defaultValue = new TextFilterValue(),
+//     active = false,
+//   }: Partial<TextFilterFieldConfig> = {}) {
+//     this._value.set(initialValue);
+//     this.defaultValue = defaultValue;
+//     this._active.set(active);
+//   }
+//
+//     set(value: TextFilterValue): void {
+//         this._value.set(value);
+//     }
+//
+//     reset(): void {
+//         this._value.set(this.defaultValue);
+//     }
+//
+//     serialize(fieldName: string): void {
+//     }
+// }
 
-  constructor({ value = '', selected = true }: Partial<TextFilterValue> = {}) {
-    this.value = value;
-    this.selected = selected;
-  }
+export type TextFilterValue = {
+	value: string
+	selected: boolean
+}
+export function textFilterValue(
+	config: Partial<TextFilterValue> = {}
+): TextFilterValue {
+	return {
+		value: config.value ?? '',
+		selected: config.selected ?? true,
+	}
 }
 
-export interface TextFilterFieldConfig {
-  initialValue: TextFilterValue;
-  defaultValue: TextFilterValue;
-  active: boolean;
+export type TextFilterFieldConfig = {
+	initialValue: TextFilterValue
+	defaultValue: TextFilterValue
+	active: boolean
 }
 
-export class TextFilterField implements FilterField<TextFilterValue> {
-    defaultValue = new TextFilterValue();
+export type TextFilterField = FilterField<TextFilterValue> & { type: 'text' }
 
-    private readonly _active = signal(false);
-    active = this._active.asReadonly();
+export function textFilterField(
+	config: Partial<TextFilterFieldConfig> = {}
+): TextFilterField {
+	const defaultValue = config.defaultValue ?? textFilterValue()
+	const _value = signal(config.initialValue ?? defaultValue)
+	const _active = signal(config.active ?? false)
 
-    private readonly _value = signal(this.defaultValue);
-    value = this._value.asReadonly();
+	function set(value: TextFilterValue): void {
+		_value.set(value)
+	}
 
-    constructor({
-    initialValue = new TextFilterValue(),
-    defaultValue = new TextFilterValue(),
-    active = false,
-  }: Partial<TextFilterFieldConfig> = {}) {
-    this._value.set(initialValue);
-    this.defaultValue = defaultValue;
-    this._active.set(active);
-  }
+	function reset(): void {
+		_value.set(defaultValue)
+	}
 
-    set(value: TextFilterValue): void {
-        this._value.set(value);
-    }
+	function serialize(fieldName: string): void {
+		// Implementation here
+	}
 
-    reset(): void {
-        this._value.set(this.defaultValue);
-    }
-
-    serialize(fieldName: string): void {
-    }
+	return {
+		type: 'text',
+		defaultValue,
+		// SIGNALS
+		value: _value.asReadonly(),
+		active: _active.asReadonly(),
+		// METHODS
+		set,
+		reset,
+		serialize,
+	}
 }

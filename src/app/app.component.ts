@@ -1,7 +1,7 @@
 import { JsonPipe } from '@angular/common'
 import { Component } from '@angular/core'
 import { createFilter } from './filters/create-filter-tut'
-import { TextFilterField, TextFilterValue } from './filters/text-filter-field'
+import { textFilterField } from './filters/text-filter-field'
 
 @Component({
 	selector: 'app-root',
@@ -41,20 +41,20 @@ import { TextFilterField, TextFilterValue } from './filters/text-filter-field'
 })
 export class AppComponent {
 	filter = createFilter({
-		q: new TextFilterField(),
-		search: new TextFilterField(),
+		q: textFilterField(),
+		search: textFilterField(),
 	})
 
 	other = createFilter({
-		q: new TextFilterField(),
+		q: textFilterField(),
 	})
 
 	updateQ(value: string) {
-		this.filter.fields.q.set(new TextFilterValue({ value }))
+		this.filter.fields.q.set({ ...this.filter.fields.q.value(), value })
 	}
 
 	updateSearch(value: string) {
-		this.filter.set({ search: new TextFilterValue({ value }) })
+		this.filter.set({ search: { ...this.filter.fields.search.value(), value } })
 	}
 
 	nextPage() {

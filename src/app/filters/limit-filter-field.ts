@@ -1,11 +1,21 @@
-import {TextFilterField, TextFilterFieldConfig, TextFilterValue} from "./text-filter-field";
+import {
+	textFilterField,
+	TextFilterValue,
+	textFilterValue,
+} from './text-filter-field'
+import { FilterField } from './types'
 
-export class LimitFilterField extends TextFilterField {
-  constructor({
-    initialValue = new TextFilterValue({ value: '20' }),
-    defaultValue = new TextFilterValue({ value: '20' }),
-    active = false,
-  }: Partial<TextFilterFieldConfig> = {}) {
-    super({ initialValue, defaultValue, active });
-  }
+export type LimitFilterField = FilterField<TextFilterValue> & {
+	type: 'limit'
+}
+
+export function limitFilterField(): LimitFilterField {
+	return {
+		...textFilterField({
+			initialValue: textFilterValue({ value: '20' }),
+			defaultValue: textFilterValue({ value: '20' }),
+			active: false,
+		}),
+		type: 'limit',
+	}
 }
