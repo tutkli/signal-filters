@@ -8,23 +8,23 @@ import {
 } from '@angular/core'
 import { MatSlideToggle } from '@angular/material/slide-toggle'
 import { BooleanFilterValue } from '../filters/boolean-filter'
+import { FilterFieldWrapperComponent } from './filter-field-wrapper.ng'
 
 @Component({
 	selector: 'app-boolean-filter-field',
-	imports: [MatSlideToggle],
+	imports: [MatSlideToggle, FilterFieldWrapperComponent],
 	template: `
-		<button
-			(click)="toggleSelected()"
-			[attr.data-selected]="fieldValue().selected ? true : undefined"
-			class="data-selected:bg-secondary-container cursor-pointer inline-flex items-center justify-center pl-3 pr-2 py-1 gap-1.5 whitespace-nowrap text-base rounded-sm transition-colors disabled:pointer-events-none disabled:opacity-50 border border-gray-500 bg-background border-solid hover:bg-surface-dim focus-visible:outline-primary">
-			<span>{{ label() }}</span>
-			<div class="shrink-0 bg-gray-500 relative w-px mx-2 h-6"></div>
+		<app-filter-field-wrapper
+			[selected]="fieldValue().selected"
+			(toggleSelected)="toggleSelected()">
+			<span ngProjectAs="label">{{ label() }}</span>
+
 			<mat-slide-toggle
 				hideIcon
 				(click)="onSliderClick($event)"
 				[checked]="fieldValue().value"
 				(change)="updateValue($event.checked)" />
-		</button>
+		</app-filter-field-wrapper>
 	`,
 	styles: `
 		@use '@angular/material' as mat;
