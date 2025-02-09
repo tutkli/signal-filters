@@ -18,6 +18,8 @@ html {
 html,
 body {
 	height: 100%;
+	background-color: var(--color-background);
+	color: var(--color-on-background);
 }
 body {
 	margin: 0;

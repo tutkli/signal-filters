@@ -59,6 +59,7 @@ Value:
 			padding: 8px 16px;
 			display: flex;
 			gap: 1rem;
+			border-bottom: 1px solid var(--color-gray-500);
 		}
 	`,
 })
