@@ -8,6 +8,7 @@ import {
 	FilterFields,
 	FilterFieldsWithPagination,
 	FilterValueChanges,
+	Pairs,
 } from './types'
 
 export function createFilter<
@@ -39,6 +40,16 @@ export function createFilter<
 			},
 			{} as FilterValueChanges<FilterFieldsWithPagination<T>>
 		)
+	})
+
+	const serializedParams = computed(() => {
+		const queryParams = fieldKeys.reduce<Pairs>((acc, key) => {
+			const field = getField(key)
+			const serializedValue = field.serialize(key as string)
+			if (serializedValue) return { ...acc, ...serializedValue }
+			return acc
+		}, {})
+		return new URLSearchParams(queryParams).toString()
 	})
 
 	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
@@ -88,6 +99,7 @@ export function createFilter<
 		// SIGNALS
 		isDirty,
 		value,
+		serializedValue: serializedParams,
 		// METHODS
 		set,
 		reset,

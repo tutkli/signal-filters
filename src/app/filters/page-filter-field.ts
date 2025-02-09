@@ -1,10 +1,15 @@
 import { computed, signal } from '@angular/core'
+import { pageFilterSerializer } from './serializers'
 import { FilterField, FilterFields } from './types'
 
 export type PageFilterFieldConfig = {
 	initialValue: number
 	defaultValue: number
 	active: boolean
+	serializer: (
+		fieldName: string,
+		value: number
+	) => { [key: string]: string } | undefined
 }
 
 export type PageFilterField = FilterField<number> & {
@@ -15,6 +20,7 @@ export type PageFilterField = FilterField<number> & {
 export function pageFilterField(
 	config: Partial<PageFilterFieldConfig> = {}
 ): PageFilterField {
+	const serializer = config.serializer ?? pageFilterSerializer
 	const defaultValue = config.defaultValue ?? 1
 	const _value = signal(config.initialValue ?? defaultValue)
 	const _active = signal(config.active ?? false)
@@ -31,8 +37,8 @@ export function pageFilterField(
 		_value.set(defaultValue)
 	}
 
-	function serialize(fieldName: string): void {
-		// implementation here
+	function serialize(fieldName: string = 'page') {
+		return serializer(fieldName, _value())
 	}
 
 	function nextPage() {

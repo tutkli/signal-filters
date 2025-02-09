@@ -1,4 +1,5 @@
 import { computed, signal } from '@angular/core'
+import { limitFilterSerializer } from './serializers'
 import { FilterField, FilterFields } from './types'
 
 export type LimitFilterField = FilterField<number> & {
@@ -9,11 +10,16 @@ export type LimitFilterFieldConfig = {
 	initialValue: number
 	defaultValue: number
 	active: boolean
+	serializer: (
+		fieldName: string,
+		value: number
+	) => { [key: string]: string } | undefined
 }
 
 export function limitFilterField(
 	config: Partial<LimitFilterFieldConfig> = {}
 ): LimitFilterField {
+	const serializer = config.serializer ?? limitFilterSerializer
 	const defaultValue = config.defaultValue ?? 20
 	const _value = signal(config.initialValue ?? defaultValue)
 	const _active = signal(config.active ?? false)
@@ -30,8 +36,8 @@ export function limitFilterField(
 		_value.set(defaultValue)
 	}
 
-	function serialize() {
-		// implementation here
+	function serialize(fieldName: string = 'limit') {
+		return serializer(fieldName, _value())
 	}
 
 	return {

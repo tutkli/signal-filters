@@ -1,4 +1,5 @@
 import { computed, signal } from '@angular/core'
+import { textFilterSerializer } from './serializers'
 import { FilterField, FilterFields } from './types'
 
 export type TextFilterValue = {
@@ -18,6 +19,10 @@ export type TextFilterFieldConfig = {
 	initialValue: Partial<TextFilterValue>
 	defaultValue: Partial<TextFilterValue>
 	active: boolean
+	serializer: (
+		fieldName: string,
+		value: TextFilterValue
+	) => { [key: string]: string } | undefined
 }
 
 export type TextFilterField = FilterField<TextFilterValue> & { type: 'text' }
@@ -25,6 +30,7 @@ export type TextFilterField = FilterField<TextFilterValue> & { type: 'text' }
 export function textFilterField(
 	config: Partial<TextFilterFieldConfig> = {}
 ): TextFilterField {
+	const serializer = config.serializer ?? textFilterSerializer
 	const defaultValue = textFilterValue(config.defaultValue)
 	const _value = signal<TextFilterValue>({
 		...defaultValue,
@@ -44,8 +50,8 @@ export function textFilterField(
 		_value.set(defaultValue)
 	}
 
-	function serialize(fieldName: string): void {
-		// Implementation here
+	function serialize(fieldName: string) {
+		return serializer(fieldName, _value())
 	}
 
 	return {
