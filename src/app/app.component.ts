@@ -3,6 +3,7 @@ import { Component } from '@angular/core'
 import { MatDivider } from '@angular/material/divider'
 import { MatToolbar } from '@angular/material/toolbar'
 import { BooleanFilterFieldComponent } from './components/boolean-filter-field.ng'
+import { BooleanFilterComponent } from './components/something'
 import { TextFilterFieldComponent } from './components/text-filter-field.ng'
 import { booleanFilterField } from './filters/boolean-filter'
 import { createFilter } from './filters/create-filter'
@@ -17,6 +18,7 @@ import { FilterFieldName } from './filters/types'
 		TextFilterFieldComponent,
 		BooleanFilterFieldComponent,
 		MatDivider,
+		BooleanFilterComponent,
 	],
 	template: `
 		<mat-toolbar>
@@ -36,8 +38,9 @@ import { FilterFieldName } from './filters/types'
 				label="Visible" />
 		</mat-toolbar>
 
+		<app-something [state]="filter.fields.visible.value()" />
 		<div>
-			<button (click)="nextPage()">Next page</button>
+			<button (click)="nextPage()" class="bg-blue-500">Next page</button>
 
 			<div>
 				<button (click)="filter.reset()">Reset All</button>

@@ -6,36 +6,15 @@ import {
 	output,
 	signal,
 } from '@angular/core'
-import { MatChipListbox, MatChipOption } from '@angular/material/chips'
-import { MatSlideToggle } from '@angular/material/slide-toggle'
 import { BooleanFilterValue } from '../filters/boolean-filter'
 
 @Component({
 	selector: 'app-boolean-filter-field',
-	imports: [MatChipListbox, MatChipOption, MatSlideToggle],
+	imports: [],
 	template: `
-		<mat-chip-listbox hideSingleSelectionIndicator>
-			<mat-chip-option
-				disableRipple
-				[selected]="selected()"
-				(selectionChange)="selected.set($event.selected); toggleSelected()">
-				<mat-slide-toggle
-					hideIcon
-					[disabled]="!fieldValue().selected"
-					[checked]="fieldValue().value"
-					(change)="updateValue($event.checked)"
-					(click)="$event.stopPropagation()"></mat-slide-toggle>
-				<span class="label">{{ label() }}</span>
-			</mat-chip-option>
-		</mat-chip-listbox>
+		<button></button>
 	`,
-	styles: `
-		mat-chip-option {
-			height: auto;
-			padding: 5px 0;
-			margin: 0;
-		}
-	`,
+	styles: ``,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooleanFilterFieldComponent {
