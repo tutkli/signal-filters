@@ -4,9 +4,9 @@ import { MatDivider } from '@angular/material/divider'
 import { MatToolbar } from '@angular/material/toolbar'
 import { BooleanFilterFieldComponent } from './components/boolean-filter-field.ng'
 import { TextFilterFieldComponent } from './components/text-filter-field.ng'
-import { booleanFilterField } from './filters/boolean-filter'
 import { createFilter } from './filters/create-filter'
-import { textFilterField } from './filters/text-filter'
+import { booleanFilterField } from './filters/filter-fields/boolean-filter'
+import { textFilterField } from './filters/filter-fields/text-filter'
 import { FilterFieldName } from './filters/types'
 
 @Component({
@@ -45,11 +45,11 @@ import { FilterFieldName } from './filters/types'
 			<div>Filter is dirty: {{ filter.isDirty() }}</div>
 			<pre>
 Serialized params:
-				{{ filter.serializedPairs() | json }}</pre
+{{ filter.serializedPairs() | json }}</pre
 			>
 			<pre>
 Value:
-				{{ filter.value() | json }}</pre
+{{ filter.value() | json }}</pre
 			>
 		</div>
 	`,

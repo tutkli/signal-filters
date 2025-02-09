@@ -4,7 +4,7 @@ import { MatIconButton } from '@angular/material/button'
 import { MatFormField, MatSuffix } from '@angular/material/form-field'
 import { MatIcon } from '@angular/material/icon'
 import { MatInput } from '@angular/material/input'
-import { TextFilterValue } from '../filters/text-filter'
+import { TextFilterValue } from '../filters/filter-fields/text-filter'
 
 @Component({
 	selector: 'app-text-filter-field',

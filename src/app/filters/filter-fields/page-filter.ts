@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core'
-import { pageFilterSerializer } from './serializers'
-import { FilterField, FilterFields } from './types'
+import { pageFilterSerializer } from '../serializers'
+import { FilterField, FilterFields } from '../types'
 
 export type PageFilterFieldConfig = {
 	initialValue: number

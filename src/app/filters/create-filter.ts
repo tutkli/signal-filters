@@ -1,6 +1,6 @@
 import { computed } from '@angular/core'
-import { isLimitFilterField, limitFilterField } from './limit-filter'
-import { isPageFilterField, pageFilterField } from './page-filter'
+import { isLimitFilterField, limitFilterField } from './filter-fields/limit-filter'
+import { isPageFilterField, pageFilterField } from './filter-fields/page-filter'
 import {
 	ExtractFieldValue,
 	FilterField,

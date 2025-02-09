@@ -1,8 +1,8 @@
 import { Signal } from '@angular/core'
-import { BooleanFilterField } from './boolean-filter'
-import { LimitFilterField } from './limit-filter'
-import { PageFilterField } from './page-filter'
-import { TextFilterField } from './text-filter'
+import { BooleanFilterField } from './filter-fields/boolean-filter'
+import { LimitFilterField } from './filter-fields/limit-filter'
+import { PageFilterField } from './filter-fields/page-filter'
+import { TextFilterField } from './filter-fields/text-filter'
 
 export interface Pairs {
 	[key: string]: string

@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core'
-import { limitFilterSerializer } from './serializers'
-import { FilterField, FilterFields } from './types'
+import { limitFilterSerializer } from '../serializers'
+import { FilterField, FilterFields } from '../types'
 
 export type LimitFilterField = FilterField<number> & {
 	type: 'limit'

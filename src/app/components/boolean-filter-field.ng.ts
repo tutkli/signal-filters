@@ -7,7 +7,7 @@ import {
 	signal,
 } from '@angular/core'
 import { MatSlideToggle } from '@angular/material/slide-toggle'
-import { BooleanFilterValue } from '../filters/boolean-filter'
+import { BooleanFilterValue } from '../filters/filter-fields/boolean-filter'
 import { FilterFieldWrapperComponent } from './filter-field-wrapper.ng'
 
 @Component({

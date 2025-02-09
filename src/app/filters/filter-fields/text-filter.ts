@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core'
-import { textFilterSerializer } from './serializers'
-import { FilterField, FilterFields } from './types'
+import { textFilterSerializer } from '../serializers'
+import { FilterField, FilterFields } from '../types'
 
 export type TextFilterValue = {
 	value: string

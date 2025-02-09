@@ -1,5 +1,5 @@
-import { BooleanFilterValue } from './boolean-filter'
-import { TextFilterValue } from './text-filter'
+import { BooleanFilterValue } from './filter-fields/boolean-filter'
+import { TextFilterValue } from './filter-fields/text-filter'
 
 export function textFilterSerializer(fieldName: string, value: TextFilterValue) {
 	if (!value.selected || value.value === '') return
