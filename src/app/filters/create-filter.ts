@@ -42,7 +42,7 @@ export function createFilter<
 		)
 	})
 
-	const serializedParams = computed(() => {
+	const serializedPairs = computed(() => {
 		return fieldKeys.reduce<Pairs>((acc, key) => {
 			const field = getField(key)
 			const serializedValue = field.serialize(key as string)
@@ -98,7 +98,7 @@ export function createFilter<
 		// SIGNALS
 		isDirty,
 		value,
-		serializedValue: serializedParams,
+		serializedPairs,
 		// METHODS
 		set,
 		reset,

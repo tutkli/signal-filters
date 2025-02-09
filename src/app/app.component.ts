@@ -45,7 +45,7 @@ import { FilterFieldName } from './filters/types'
 			<div>Filter is dirty: {{ filter.isDirty() }}</div>
 			<pre>
 Serialized params:
-				{{ filter.serializedValue() | json }}</pre
+				{{ filter.serializedPairs() | json }}</pre
 			>
 			<pre>
 Value:

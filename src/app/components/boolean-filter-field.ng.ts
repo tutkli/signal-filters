@@ -20,6 +20,7 @@ import { BooleanFilterValue } from '../filters/boolean-filter'
 				[selected]="selected()"
 				(selectionChange)="selected.set($event.selected); toggleSelected()">
 				<mat-slide-toggle
+					hideIcon
 					[disabled]="!fieldValue().selected"
 					[checked]="fieldValue().value"
 					(change)="updateValue($event.checked)"
@@ -64,11 +65,5 @@ export class BooleanFilterFieldComponent {
 			...this.fieldValue(),
 			selected: this.selected(),
 		})
-	}
-
-	onSliderClick(event: MouseEvent): void {
-		if (this.fieldValue().selected) {
-			event.stopPropagation()
-		}
 	}
 }
