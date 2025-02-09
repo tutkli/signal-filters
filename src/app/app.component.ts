@@ -69,18 +69,6 @@ export class AppComponent {
 		visible: booleanFilterField(),
 	})
 
-	other = createFilter({
-		q: textFilterField(),
-	})
-
-	updateQ(value: string) {
-		this.filter.fields.q.set({ ...this.filter.fields.q.value(), value })
-	}
-
-	updateSearch(value: string) {
-		this.filter.set({ search: { ...this.filter.fields.search.value(), value } })
-	}
-
 	nextPage() {
 		this.filter.fields.page.nextPage()
 	}
