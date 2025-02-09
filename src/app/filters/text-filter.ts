@@ -6,9 +6,7 @@ export type TextFilterValue = {
 	value: string
 	selected: boolean
 }
-export function textFilterValue(
-	config: Partial<TextFilterValue> = {}
-): TextFilterValue {
+export function textFilterValue(config: Partial<TextFilterValue> = {}): TextFilterValue {
 	return {
 		value: config.value ?? '',
 		selected: config.selected ?? true,
@@ -19,17 +17,12 @@ export type TextFilterFieldConfig = {
 	initialValue: Partial<TextFilterValue>
 	defaultValue: Partial<TextFilterValue>
 	active: boolean
-	serializer: (
-		fieldName: string,
-		value: TextFilterValue
-	) => { [key: string]: string } | undefined
+	serializer: (fieldName: string, value: TextFilterValue) => { [key: string]: string } | undefined
 }
 
 export type TextFilterField = FilterField<TextFilterValue> & { type: 'text' }
 
-export function textFilterField(
-	config: Partial<TextFilterFieldConfig> = {}
-): TextFilterField {
+export function textFilterField(config: Partial<TextFilterFieldConfig> = {}): TextFilterField {
 	const serializer = config.serializer ?? textFilterSerializer
 	const defaultValue = textFilterValue(config.defaultValue)
 	const _value = signal<TextFilterValue>({
@@ -38,9 +31,7 @@ export function textFilterField(
 	})
 	const _active = signal(config.active ?? false)
 
-	const isDirty = computed(
-		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
-	)
+	const isDirty = computed(() => JSON.stringify(_value()) !== JSON.stringify(defaultValue))
 
 	function set(value: Partial<TextFilterValue>): void {
 		_value.update(v => ({ ...v, ...value }))
@@ -67,8 +58,6 @@ export function textFilterField(
 	}
 }
 
-export function isTextFilterField(
-	field: FilterFields | undefined
-): field is TextFilterField {
+export function isTextFilterField(field: FilterFields | undefined): field is TextFilterField {
 	return field?.type === 'text'
 }

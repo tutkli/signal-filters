@@ -11,20 +11,15 @@ import {
 	Pairs,
 } from './types'
 
-export function createFilter<
-	T extends Partial<Record<FilterFieldName, FilterFields>>,
->(initialFields: T) {
+export function createFilter<T extends Partial<Record<FilterFieldName, FilterFields>>>(
+	initialFields: T
+) {
 	const fields = initFields()
-
-	const fieldKeys = Object.keys(
-		fields
-	) as (keyof FilterFieldsWithPagination<T>)[]
+	const fieldKeys = Object.keys(fields) as (keyof FilterFieldsWithPagination<T>)[]
 
 	const isDirty = computed(() => {
 		return fieldKeys
-			.filter(
-				key => key !== FilterFieldName.page && key !== FilterFieldName.limit
-			)
+			.filter(key => key !== FilterFieldName.page && key !== FilterFieldName.limit)
 			.map(fieldKey => getField(fieldKey))
 			.some(field => field.isDirty())
 	})
@@ -33,9 +28,7 @@ export function createFilter<
 		return fieldKeys.reduce(
 			(acc, key) => {
 				const field = getField(key)
-				acc[key] = field.value() as FilterValueChanges<
-					FilterFieldsWithPagination<T>
-				>[typeof key]
+				acc[key] = field.value() as FilterValueChanges<FilterFieldsWithPagination<T>>[typeof key]
 				return acc
 			},
 			{} as FilterValueChanges<FilterFieldsWithPagination<T>>
@@ -45,16 +38,12 @@ export function createFilter<
 	const serializedPairs = computed(() => {
 		return fieldKeys.reduce<Pairs>((acc, key) => {
 			const field = getField(key)
-			const serializedValue = field.serialize(key as string)
-			if (serializedValue) return { ...acc, ...serializedValue }
-			return acc
+			return { ...acc, ...field.serialize(key as string) }
 		}, {})
 	})
 
 	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
-		return fields[key] as FilterField<
-			ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
-		>
+		return fields[key] as FilterField<ExtractFieldValue<FilterFieldsWithPagination<T>[K]>>
 	}
 
 	function set<K extends keyof FilterFieldsWithPagination<T>>(
@@ -65,11 +54,7 @@ export function createFilter<
 	) {
 		for (const fieldKey in newFields) {
 			const field = getField(fieldKey as K)
-			field.set(
-				newFields[fieldKey as K] as ExtractFieldValue<
-					FilterFieldsWithPagination<T>[K]
-				>
-			)
+			field.set(newFields[fieldKey as K] as ExtractFieldValue<FilterFieldsWithPagination<T>[K]>)
 		}
 		if (resetPage) getField('page').reset()
 	}
@@ -84,12 +69,8 @@ export function createFilter<
 	function initFields() {
 		return {
 			...initialFields,
-			page: isPageFilterField(initialFields.page)
-				? initialFields.page
-				: pageFilterField(),
-			limit: isLimitFilterField(initialFields.limit)
-				? initialFields.limit
-				: limitFilterField(),
+			page: isPageFilterField(initialFields.page) ? initialFields.page : pageFilterField(),
+			limit: isLimitFilterField(initialFields.limit) ? initialFields.limit : limitFilterField(),
 		}
 	}
 

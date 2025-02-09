@@ -1,9 +1,4 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	input,
-	output,
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { MatIconButton } from '@angular/material/button'
 import { MatFormField, MatSuffix } from '@angular/material/form-field'
@@ -13,14 +8,7 @@ import { TextFilterValue } from '../filters/text-filter'
 
 @Component({
 	selector: 'app-text-filter-field',
-	imports: [
-		MatFormField,
-		MatInput,
-		MatIconButton,
-		MatIcon,
-		MatSuffix,
-		FormsModule,
-	],
+	imports: [MatFormField, MatInput, MatIconButton, MatIcon, MatSuffix, FormsModule],
 	template: `
 		<mat-form-field appearance="outline" subscriptSizing="dynamic">
 			<input

@@ -6,10 +6,7 @@ export type PageFilterFieldConfig = {
 	initialValue: number
 	defaultValue: number
 	active: boolean
-	serializer: (
-		fieldName: string,
-		value: number
-	) => { [key: string]: string } | undefined
+	serializer: (fieldName: string, value: number) => { [key: string]: string } | undefined
 }
 
 export type PageFilterField = FilterField<number> & {
@@ -17,17 +14,13 @@ export type PageFilterField = FilterField<number> & {
 	nextPage: () => void
 }
 
-export function pageFilterField(
-	config: Partial<PageFilterFieldConfig> = {}
-): PageFilterField {
+export function pageFilterField(config: Partial<PageFilterFieldConfig> = {}): PageFilterField {
 	const serializer = config.serializer ?? pageFilterSerializer
 	const defaultValue = config.defaultValue ?? 1
 	const _value = signal(config.initialValue ?? defaultValue)
 	const _active = signal(config.active ?? false)
 
-	const isDirty = computed(
-		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
-	)
+	const isDirty = computed(() => JSON.stringify(_value()) !== JSON.stringify(defaultValue))
 
 	function set(value: number): void {
 		_value.set(value)
@@ -59,8 +52,6 @@ export function pageFilterField(
 	}
 }
 
-export function isPageFilterField(
-	field: FilterFields | undefined
-): field is PageFilterField {
+export function isPageFilterField(field: FilterFields | undefined): field is PageFilterField {
 	return field?.type === 'page'
 }

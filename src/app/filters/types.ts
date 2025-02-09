@@ -17,11 +17,7 @@ export type FilterField<T> = {
 	reset: () => void
 }
 
-export type FilterFields =
-	| PageFilterField
-	| LimitFilterField
-	| TextFilterField
-	| BooleanFilterField
+export type FilterFields = PageFilterField | LimitFilterField | TextFilterField | BooleanFilterField
 
 export enum FilterFieldName {
 	page = 'page',
@@ -32,9 +28,7 @@ export enum FilterFieldName {
 }
 
 export type ExtractFieldValue<T> = T extends FilterField<infer V> ? V : never
-export type FilterValueChanges<
-	T extends Partial<Record<FilterFieldName, FilterField<any>>>,
-> = {
+export type FilterValueChanges<T extends Partial<Record<FilterFieldName, FilterField<any>>>> = {
 	[K in keyof T]: ExtractFieldValue<T[K]> | undefined
 }
 export type FilterFieldsWithPagination<T> = T & {

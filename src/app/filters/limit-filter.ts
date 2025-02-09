@@ -10,23 +10,16 @@ export type LimitFilterFieldConfig = {
 	initialValue: number
 	defaultValue: number
 	active: boolean
-	serializer: (
-		fieldName: string,
-		value: number
-	) => { [key: string]: string } | undefined
+	serializer: (fieldName: string, value: number) => { [key: string]: string } | undefined
 }
 
-export function limitFilterField(
-	config: Partial<LimitFilterFieldConfig> = {}
-): LimitFilterField {
+export function limitFilterField(config: Partial<LimitFilterFieldConfig> = {}): LimitFilterField {
 	const serializer = config.serializer ?? limitFilterSerializer
 	const defaultValue = config.defaultValue ?? 20
 	const _value = signal(config.initialValue ?? defaultValue)
 	const _active = signal(config.active ?? false)
 
-	const isDirty = computed(
-		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
-	)
+	const isDirty = computed(() => JSON.stringify(_value()) !== JSON.stringify(defaultValue))
 
 	function set(value: number): void {
 		_value.set(value)
@@ -53,8 +46,6 @@ export function limitFilterField(
 	}
 }
 
-export function isLimitFilterField(
-	field: FilterFields | undefined
-): field is LimitFilterField {
+export function isLimitFilterField(field: FilterFields | undefined): field is LimitFilterField {
 	return field?.type === 'limit'
 }

@@ -6,9 +6,7 @@ export type BooleanFilterValue = {
 	value: boolean | undefined
 	selected: boolean
 }
-export function booleanFilterValue(
-	config: Partial<BooleanFilterValue> = {}
-): BooleanFilterValue {
+export function booleanFilterValue(config: Partial<BooleanFilterValue> = {}): BooleanFilterValue {
 	return {
 		value: config.value ?? false,
 		selected: config.selected ?? true,
@@ -39,9 +37,7 @@ export function booleanFilterField(
 	})
 	const _active = signal(config.active ?? false)
 
-	const isDirty = computed(
-		() => JSON.stringify(_value()) !== JSON.stringify(defaultValue)
-	)
+	const isDirty = computed(() => JSON.stringify(_value()) !== JSON.stringify(defaultValue))
 
 	function set(value: Partial<BooleanFilterValue>): void {
 		_value.update(v => ({ ...v, ...value }))
