@@ -1,29 +1,24 @@
 import { JsonPipe } from '@angular/common'
 import { Component } from '@angular/core'
+import { MatToolbar } from '@angular/material/toolbar'
+import { TextFilterFieldComponent } from './components/text-filter-field.ng'
 import { booleanFilterField } from './filters/boolean-filter'
 import { createFilter } from './filters/create-filter'
 import { textFilterField } from './filters/text-filter'
 
 @Component({
 	selector: 'app-root',
-	imports: [JsonPipe],
+	imports: [JsonPipe, MatToolbar, TextFilterFieldComponent],
 	template: `
-		<div>
-			<div>
-				<input
-					#qInput
-					[value]="filter.fields.q.value().value"
-					(input)="updateQ(qInput.value)" />
-				<button (click)="filter.reset(['q'])">Reset</button>
-			</div>
+		<mat-toolbar>
+			<app-text-filter-field
+				placeholder="Buscar..."
+				[fieldValue]="filter.fields.q.value()"
+				(valueChange)="filter.set({ q: $event })"
+				(reseted)="filter.reset(['q'])" />
+		</mat-toolbar>
 
-			<div>
-				<input
-					#searchInput
-					[value]="filter.fields.search.value().value"
-					(input)="updateSearch(searchInput.value)" />
-				<button (click)="filter.reset(['search'])">Reset</button>
-			</div>
+		<div>
 			<div>
 				Visible: {{ filter.fields.visible.value().value }}
 				<button
@@ -52,6 +47,12 @@ Value:
 				{{ filter.value() | json }}</pre
 			>
 		</div>
+	`,
+	styles: `
+		mat-toolbar {
+			height: auto;
+			padding: 8px 16px;
+		}
 	`,
 })
 export class AppComponent {
