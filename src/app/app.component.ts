@@ -1,7 +1,8 @@
 import { JsonPipe } from '@angular/common'
 import { Component } from '@angular/core'
+import { booleanFilterField } from './filters/boolean-filter'
 import { createFilter } from './filters/create-filter'
-import { textFilterField } from './filters/text-filter-field'
+import { textFilterField } from './filters/text-filter'
 
 @Component({
 	selector: 'app-root',
@@ -23,11 +24,18 @@ import { textFilterField } from './filters/text-filter-field'
 					(input)="updateSearch(searchInput.value)" />
 				<button (click)="filter.reset(['search'])">Reset</button>
 			</div>
-			<!--			<div>-->
-			<!--				Visible {{ filter.getField('visible')?.value() }}-->
-			<!--				<button (click)="filter.updateField('visible', !filter.getField('visible')?.value())">Toggle</button>-->
-			<!--				<button (click)="filter.reset('visible')">Reset</button>-->
-			<!--			</div>-->
+			<div>
+				Visible: {{ filter.fields.visible.value().value }}
+				<button
+					(click)="
+						filter.fields.visible.set({
+							value: !filter.fields.visible.value().value,
+						})
+					">
+					Toggle
+				</button>
+				<button (click)="filter.reset(['visible'])">Reset</button>
+			</div>
 
 			<button (click)="nextPage()">Next page</button>
 
@@ -50,6 +58,7 @@ export class AppComponent {
 	filter = createFilter({
 		q: textFilterField(),
 		search: textFilterField(),
+		visible: booleanFilterField(),
 	})
 
 	other = createFilter({

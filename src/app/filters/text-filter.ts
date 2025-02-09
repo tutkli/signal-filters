@@ -56,10 +56,10 @@ export function textFilterField(
 
 	return {
 		type: 'text',
-		isDirty,
 		// SIGNALS
 		value: _value.asReadonly(),
 		active: _active.asReadonly(),
+		isDirty,
 		// METHODS
 		set,
 		reset,

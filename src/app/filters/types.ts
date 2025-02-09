@@ -1,7 +1,8 @@
 import { Signal } from '@angular/core'
-import { LimitFilterField } from './limit-filter-field'
-import { PageFilterField } from './page-filter-field'
-import { TextFilterField } from './text-filter-field'
+import { BooleanFilterField } from './boolean-filter'
+import { LimitFilterField } from './limit-filter'
+import { PageFilterField } from './page-filter'
+import { TextFilterField } from './text-filter'
 
 export interface Pairs {
 	[key: string]: string
@@ -11,18 +12,23 @@ export type FilterField<T> = {
 	active: Signal<boolean>
 	isDirty: Signal<boolean>
 	value: Signal<T>
-	set: (value: T) => void
+	set: (value: Partial<T>) => void
 	serialize: (fieldName: string) => { [key: string]: string } | undefined
 	reset: () => void
 }
 
-export type FilterFields = PageFilterField | LimitFilterField | TextFilterField
+export type FilterFields =
+	| PageFilterField
+	| LimitFilterField
+	| TextFilterField
+	| BooleanFilterField
 
 export enum FilterFieldName {
 	page = 'page',
 	limit = 'limit',
 	q = 'q',
 	search = 'search',
+	visible = 'visible',
 }
 
 export type ExtractFieldValue<T> = T extends FilterField<infer V> ? V : never
