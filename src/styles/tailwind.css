@@ -1,6 +1,76 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: var(--mat-sys-primary);
+  --color-primary-container: var(--mat-sys-primary-container);
+  --color-primary-on: var(--mat-sys-on-primary);
+  --color-primary-on-container: var(--mat-sys-on-primary-container);
+  --color-primary-inverse: var(--mat-sys-inverse-primary);
+  --color-primary-fixed: var(--mat-sys-primary-fixed);
+  --color-primary-fixed-dim: var(--mat-sys-primary-fixed-dim);
+  --color-primary-on-fixed: var(--mat-sys-on-primary-fixed);
+  --color-primary-on-fixed-variant: var(--mat-sys-on-primary-fixed-variant);
+
+  --color-secondary: var(--mat-sys-secondary);
+  --color-secondary-container: var(--mat-sys-secondary-container);
+  --color-secondary-on: var(--mat-sys-on-secondary);
+  --color-secondary-on-container: var(--mat-sys-on-secondary-container);
+  --color-secondary-fixed: var(--mat-sys-secondary-fixed);
+  --color-secondary-fixed-dim: var(--mat-sys-secondary-fixed-dim);
+  --color-secondary-on-fixed: var(--mat-sys-on-secondary-fixed);
+  --color-secondary-on-fixed-variant: var(--mat-sys-on-secondary-fixed-variant);
+
+  --color-tertiary: var(--mat-sys-tertiary);
+  --color-tertiary-container: var(--mat-sys-tertiary-container);
+  --color-tertiary-on: var(--mat-sys-on-tertiary);
+  --color-tertiary-on-container: var(--mat-sys-on-tertiary-container);
+  --color-tertiary-fixed: var(--mat-sys-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--mat-sys-tertiary-fixed-dim);
+  --color-tertiary-on-fixed: var(--mat-sys-on-tertiary-fixed);
+  --color-tertiary-on-fixed-variant: var(--mat-sys-on-tertiary-fixed-variant);
+
+  --color-surface: var(--mat-sys-surface);
+  --color-surface-on: var(--mat-sys-on-surface);
+  --color-surface-dim: var(--mat-sys-surface-dim);
+  --color-surface-bright: var(--mat-sys-surface-bright);
+
+  --color-surface-container: var(--mat-sys-surface-container);
+  --color-surface-container-lowest: var(--mat-sys-surface-container-lowest);
+  --color-surface-container-high: var(--mat-sys-surface-container-high);
+  --color-surface-container-highest: var(--mat-sys-surface-container-highest);
+
+  --color-surface-tint: var(--mat-sys-surface-tint);
+  --color-surface-variant: var(--mat-sys-surface-variant);
+  --color-surface-on-variant: var(--mat-sys-on-surface-variant);
+
+  --color-error: var(--mat-sys-error);
+  --color-error-container: var(--mat-sys-error-container);
+  --color-error-on: var(--mat-sys-on-error);
+  --color-error-on-container: var(--mat-sys-on-error-container);
+
+  --color-background: var(--mat-sys-background);
+  --color-background-on: var(--mat-sys-on-background);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 .mdc-notched-outline__notch {
   border-style: none;

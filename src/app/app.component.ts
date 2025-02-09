@@ -40,7 +40,7 @@ import { FilterFieldName } from './filters/types'
 
 		<app-something [state]="filter.fields.visible.value()" />
 		<div>
-			<button (click)="nextPage()" class="bg-blue-500">Next page</button>
+			<button (click)="nextPage()" class="bg-primary text-primary-on">Next page</button>
 
 			<div>
 				<button (click)="filter.reset()">Reset All</button>
