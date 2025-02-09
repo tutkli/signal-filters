@@ -6,15 +6,39 @@ import {
 	output,
 	signal,
 } from '@angular/core'
+import { MatSlideToggle } from '@angular/material/slide-toggle'
 import { BooleanFilterValue } from '../filters/boolean-filter'
 
 @Component({
 	selector: 'app-boolean-filter-field',
-	imports: [],
+	imports: [MatSlideToggle],
 	template: `
-		<button></button>
+		<button
+			(click)="toggleSelected()"
+			[attr.data-selected]="fieldValue().selected ? true : undefined"
+			class="data-selected:bg-secondary-container cursor-pointer inline-flex items-center justify-center pl-3 pr-2 py-1 gap-1.5 whitespace-nowrap text-base rounded-sm transition-colors disabled:pointer-events-none disabled:opacity-50 border border-gray-500 bg-background border-solid hover:bg-surface-dim focus-visible:outline-primary">
+			<span>{{ label() }}</span>
+			<div class="shrink-0 bg-gray-500 relative w-px mx-2 h-6"></div>
+			<mat-slide-toggle
+				hideIcon
+				(click)="onSliderClick($event)"
+				[checked]="fieldValue().value"
+				(change)="updateValue($event.checked)" />
+		</button>
 	`,
-	styles: ``,
+	styles: `
+		@use '@angular/material' as mat;
+
+		:host {
+			@include mat.slide-toggle-overrides(
+				(
+					selected-hover-handle-color: var(--mat-sys-on-primary),
+					selected-focus-handle-color: var(--mat-sys-on-primary),
+					selected-pressed-handle-color: var(--mat-sys-on-primary),
+				)
+			);
+		}
+	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooleanFilterFieldComponent {
@@ -42,7 +66,13 @@ export class BooleanFilterFieldComponent {
 	toggleSelected() {
 		this.valueChange.emit({
 			...this.fieldValue(),
-			selected: this.selected(),
+			selected: !this.fieldValue().selected,
 		})
+	}
+
+	onSliderClick(event: MouseEvent): void {
+		if (this.fieldValue().selected) {
+			event.stopPropagation()
+		}
 	}
 }
