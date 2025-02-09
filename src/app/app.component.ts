@@ -35,8 +35,14 @@ import { textFilterField } from './filters/text-filter-field'
 				<button (click)="filter.reset()">Reset All</button>
 			</div>
 			<div>Filter is dirty: {{ filter.isDirty() }}</div>
-			<div>Serialized params: {{ filter.serializedValue() }}</div>
-			<pre>{{ filter.value() | json }}</pre>
+			<pre>
+Serialized params:
+				{{ filter.serializedValue() | json }}</pre
+			>
+			<pre>
+Value:
+				{{ filter.value() | json }}</pre
+			>
 		</div>
 	`,
 })

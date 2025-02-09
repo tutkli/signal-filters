@@ -43,13 +43,12 @@ export function createFilter<
 	})
 
 	const serializedParams = computed(() => {
-		const queryParams = fieldKeys.reduce<Pairs>((acc, key) => {
+		return fieldKeys.reduce<Pairs>((acc, key) => {
 			const field = getField(key)
 			const serializedValue = field.serialize(key as string)
 			if (serializedValue) return { ...acc, ...serializedValue }
 			return acc
 		}, {})
-		return new URLSearchParams(queryParams).toString()
 	})
 
 	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
