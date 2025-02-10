@@ -3,7 +3,6 @@ import { Component } from '@angular/core'
 import { MatButton } from '@angular/material/button'
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle'
 import { MatDivider } from '@angular/material/divider'
-import { MatToolbar } from '@angular/material/toolbar'
 import { BooleanFilterFieldComponent } from './components/boolean-filter-field.ng'
 import { TextFilterFieldComponent } from './components/text-filter-field.ng'
 import { createFilter } from './filters/create-filter'
@@ -17,7 +16,6 @@ import { FilterFieldName } from './filters/types'
 	selector: 'app-root',
 	imports: [
 		JsonPipe,
-		MatToolbar,
 		TextFilterFieldComponent,
 		BooleanFilterFieldComponent,
 		MatDivider,
@@ -27,7 +25,7 @@ import { FilterFieldName } from './filters/types'
 		MatButton,
 	],
 	template: `
-		<mat-toolbar>
+		<div class="px-4 py-2 flex items-center gap-4 border-b border-gray-500">
 			<app-text-filter-field [filterField]="filter.fields.q" placeholder="Buscar..." />
 
 			<mat-divider vertical [style.height.px]="40" />
@@ -44,13 +42,13 @@ import { FilterFieldName } from './filters/types'
 				multiple
 				[value]="filter.fields.status.value()"
 				(change)="filter.fields.status.toggleValue($event.source.value)">
-				@for (value of statusValues; track $index) {
+				@for (value of availableStatuses; track $index) {
 					<mat-button-toggle [value]="value">
 						{{ value.value.toString() | uppercase }}
 					</mat-button-toggle>
 				}
 			</mat-button-toggle-group>
-		</mat-toolbar>
+		</div>
 
 		<div class="container m-auto py-8 flex space-y-4 flex-col">
 			<div class="flex space-x-2">
@@ -74,15 +72,6 @@ import { FilterFieldName } from './filters/types'
 			</div>
 		</div>
 	`,
-	styles: `
-		mat-toolbar {
-			height: auto;
-			padding: 8px 16px;
-			display: flex;
-			gap: 1rem;
-			border-bottom: 1px solid var(--color-gray-500);
-		}
-	`,
 })
 export class AppComponent {
 	protected readonly FilterFieldName = FilterFieldName
@@ -96,7 +85,7 @@ export class AppComponent {
 
 	data = this.filter.data('https://my-filter-api.com')
 
-	statusValues = ['pending', 'progress', 'done'].map(value =>
+	availableStatuses = ['pending', 'progress', 'done'].map(value =>
 		arrayFilterValue({ name: value, value })
 	)
 }
