@@ -30,10 +30,10 @@ filter.nextPage()
 // Get serialized values
 filter.serializedPairs()
 
-// Reset all filters
+// Reset all fields
 filter.reset()
 
-// Reset specific filters
+// Reset specific fields
 filter.reset([FilterFieldName.q])
 filter.fields.q.reset()
 ```

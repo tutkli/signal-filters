@@ -7,14 +7,6 @@ export function textFilterSerializer(fieldName: string, value: TextFilterValue) 
 	return { [fieldName]: value.value }
 }
 
-export function pageFilterSerializer(fieldName: string, value: number) {
-	return { [fieldName]: String(value) }
-}
-
-export function limitFilterSerializer(fieldName: string, value: number) {
-	return { [fieldName]: String(value) }
-}
-
 export function booleanFilterSerializer(fieldName: string, value: BooleanFilterValue) {
 	if (!value.selected || value.value === undefined) return
 	return { [fieldName]: value.value ? 'true' : 'false' }
