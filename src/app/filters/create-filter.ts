@@ -1,4 +1,4 @@
-import { computed } from '@angular/core'
+import { computed, effect } from '@angular/core'
 import { isLimitFilterField, limitFilterField } from './filter-fields/limit-filter'
 import { isPageFilterField, pageFilterField } from './filter-fields/page-filter'
 import {
@@ -11,6 +11,31 @@ import {
 	Pairs,
 } from './types'
 
+/**
+ * Creates a filter management system with pagination support.
+ * The filter must be created within an injection context.
+ *
+ * @example
+ * const filter = createFilter({
+ *   search: textFilterField(),
+ *   visible: booleanFilterField()
+ * });
+ *
+ * // Update filter values
+ * filter.set({ q: 'query' })
+ *
+ * // Get current values
+ * filter.value()
+ *
+ * // Get serialized values
+ * filter.serializedPairs()
+ *
+ * // Reset all filters
+ * filter.reset()
+ *
+ * // Reset specific filters
+ * filter.reset([FilterFieldName.q])
+ */
 export function createFilter<T extends Partial<Record<FilterFieldName, FilterFields>>>(
 	initialFields: T
 ) {
@@ -42,6 +67,15 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 		}, {})
 	})
 
+	// This effect ensures that the page is reseted when any of the field values changes.
+	effect(() => {
+		const fieldValues = fieldKeys
+			.filter(key => key !== FilterFieldName.page && key !== FilterFieldName.limit)
+			.map(fieldKey => getField(fieldKey).value())
+		const page = getField(FilterFieldName.page)
+		page.reset()
+	})
+
 	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
 		return fields[key] as FilterField<ExtractFieldValue<FilterFieldsWithPagination<T>[K]>>
 	}
@@ -49,14 +83,12 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 	function set<K extends keyof FilterFieldsWithPagination<T>>(
 		newFields: Partial<{
 			[key in K]: ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
-		}>,
-		resetPage = true
+		}>
 	) {
 		for (const fieldKey in newFields) {
 			const field = getField(fieldKey as K)
 			field.set(newFields[fieldKey as K] as ExtractFieldValue<FilterFieldsWithPagination<T>[K]>)
 		}
-		if (resetPage) getField('page').reset()
 	}
 
 	function reset(fieldsToReset?: (keyof FilterFieldsWithPagination<T>)[]) {

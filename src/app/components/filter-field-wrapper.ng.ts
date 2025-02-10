@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 
 @Component({
 	selector: 'app-filter-field-wrapper',
-	imports: [],
 	template: `
 		<button
 			(click)="toggleSelected.emit()"
