@@ -1,4 +1,5 @@
 import { Signal } from '@angular/core'
+import { ArrayFilterField } from './filter-fields/array-filter'
 import { BooleanFilterField } from './filter-fields/boolean-filter'
 import { LimitFilterField } from './filter-fields/limit-filter'
 import { PageFilterField } from './filter-fields/page-filter'
@@ -17,7 +18,12 @@ export type FilterField<T> = {
 	reset: () => void
 }
 
-export type FilterFields = PageFilterField | LimitFilterField | TextFilterField | BooleanFilterField
+export type FilterFields =
+	| PageFilterField
+	| LimitFilterField
+	| TextFilterField
+	| BooleanFilterField
+	| ArrayFilterField
 
 export enum FilterFieldName {
 	page = 'page',
@@ -25,6 +31,7 @@ export enum FilterFieldName {
 	q = 'q',
 	search = 'search',
 	visible = 'visible',
+	status = 'status',
 }
 
 export type ExtractFieldValue<T> = T extends FilterField<infer V> ? V : never

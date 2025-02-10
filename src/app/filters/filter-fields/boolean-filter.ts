@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core'
 import { booleanFilterSerializer } from '../serializers'
-import { FilterField } from '../types'
+import { FilterField, FilterFields } from '../types'
 
 export type BooleanFilterValue = {
 	value: boolean | undefined
@@ -62,4 +62,8 @@ export function booleanFilterField(
 		reset,
 		serialize,
 	}
+}
+
+export function isBooleanFilterField(field: FilterFields | undefined): field is BooleanFilterField {
+	return field?.type === 'boolean'
 }

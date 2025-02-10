@@ -1,10 +1,12 @@
-import { JsonPipe } from '@angular/common'
+import { JsonPipe, UpperCasePipe } from '@angular/common'
 import { Component } from '@angular/core'
+import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle'
 import { MatDivider } from '@angular/material/divider'
 import { MatToolbar } from '@angular/material/toolbar'
 import { BooleanFilterFieldComponent } from './components/boolean-filter-field.ng'
 import { TextFilterFieldComponent } from './components/text-filter-field.ng'
 import { createFilter } from './filters/create-filter'
+import { arrayFilterField, arrayFilterValue } from './filters/filter-fields/array-filter'
 import { booleanFilterField } from './filters/filter-fields/boolean-filter'
 import { textFilterField } from './filters/filter-fields/text-filter'
 import { FilterFieldName } from './filters/types'
@@ -17,6 +19,9 @@ import { FilterFieldName } from './filters/types'
 		TextFilterFieldComponent,
 		BooleanFilterFieldComponent,
 		MatDivider,
+		MatButtonToggle,
+		MatButtonToggleGroup,
+		UpperCasePipe,
 	],
 	template: `
 		<mat-toolbar>
@@ -37,6 +42,18 @@ import { FilterFieldName } from './filters/types'
 		</mat-toolbar>
 
 		<div>
+			<mat-button-toggle-group
+				hideMultipleSelectionIndicator
+				multiple
+				[value]="filter.fields.status.value()"
+				(change)="filter.fields.status.toggleValue($event.source.value)">
+				@for (value of statusValues; track $index) {
+					<mat-button-toggle [value]="value">
+						{{ value.value.toString() | uppercase }}
+					</mat-button-toggle>
+				}
+			</mat-button-toggle-group>
+
 			<button (click)="nextPage()" class="bg-primary text-on-primary">Next page</button>
 
 			<div>
@@ -68,7 +85,10 @@ export class AppComponent {
 		q: textFilterField(),
 		search: textFilterField(),
 		visible: booleanFilterField(),
+		status: arrayFilterField(),
 	})
+
+	statusValues = ['pending', 'progress', 'done'].map(value => arrayFilterValue({ value: value }))
 
 	nextPage() {
 		this.filter.fields.page.nextPage()
