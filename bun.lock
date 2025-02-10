@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "singal-filters",
+      "name": "signal-filters",
       "dependencies": {
         "@angular/animations": "^19.1.0",
         "@angular/cdk": "19.1.3",

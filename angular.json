@@ -7,7 +7,7 @@
 	},
 	"newProjectRoot": "projects",
 	"projects": {
-		"singal-filters": {
+		"signal-filters": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -45,7 +45,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"outputPath": "dist/singal-filters",
+						"outputPath": "dist/signal-filters",
 						"index": "src/index.html",
 						"browser": "src/main.ts",
 						"polyfills": [],
@@ -88,10 +88,10 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "singal-filters:build:production"
+							"buildTarget": "signal-filters:build:production"
 						},
 						"development": {
-							"buildTarget": "singal-filters:build:development"
+							"buildTarget": "signal-filters:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
