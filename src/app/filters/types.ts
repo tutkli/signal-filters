@@ -13,7 +13,7 @@ export type FilterField<T> = {
 	active: Signal<boolean>
 	isDirty: Signal<boolean>
 	value: Signal<T>
-	set: (value: Partial<T>) => void
+	set: (value: T) => void
 	serialize: (fieldName: string) => { [key: string]: string } | undefined
 	reset: () => void
 }

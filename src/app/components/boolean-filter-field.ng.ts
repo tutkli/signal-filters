@@ -11,14 +11,14 @@ import { FilterFieldWrapperComponent } from './filter-field-wrapper.ng'
 		@let fieldValue = field.value();
 		<app-filter-field-wrapper
 			[selected]="fieldValue.selected"
-			(toggleSelected)="field.set({ selected: !fieldValue.selected })">
+			(toggleSelected)="field.update({ selected: !fieldValue.selected })">
 			<span ngProjectAs="label">{{ labelPrefix() + label() }}</span>
 
 			<mat-slide-toggle
 				hideIcon
 				(click)="onSliderClick($event)"
 				[checked]="fieldValue.value"
-				(change)="field.set({ value: $event.checked })" />
+				(change)="field.update({ value: $event.checked })" />
 		</app-filter-field-wrapper>
 	`,
 	styles: `

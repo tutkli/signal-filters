@@ -14,8 +14,9 @@ const filter = createFilter({
 })
 
 // Update filter values
-filter.set({ q: { value: 'query' } })
-filter.fields.q.set({ value: 'query' })
+filter.set({q: textFilterValue({ value: 'query' })})
+filter.fields.q.set(textFilterValue({ value: 'query' }))
+filter.fields.q.update({ value: 'query' }) // Partial change
 
 // Get current values
 filter.value()

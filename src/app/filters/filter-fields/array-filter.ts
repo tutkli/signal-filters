@@ -47,8 +47,8 @@ export function arrayFilterField(config: Partial<ArrayFilterFieldConfig> = {}): 
 
 	const isDirty = computed(() => JSON.stringify(_value()) !== JSON.stringify(defaultValue))
 
-	function set(value: (ArrayFilterValue | undefined)[]): void {
-		_value.set(value.filter(v => v !== undefined))
+	function set(value: ArrayFilterValue[]): void {
+		_value.set(value)
 	}
 
 	function toggleValue(value: ArrayFilterValue) {

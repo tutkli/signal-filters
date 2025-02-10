@@ -20,7 +20,10 @@ export type TextFilterFieldConfig = {
 	serializer: (fieldName: string, value: TextFilterValue) => { [key: string]: string } | undefined
 }
 
-export type TextFilterField = FilterField<TextFilterValue> & { type: 'text' }
+export type TextFilterField = FilterField<TextFilterValue> & {
+	type: 'text'
+	update: (value: Partial<TextFilterValue>) => void
+}
 
 export function textFilterField(config: Partial<TextFilterFieldConfig> = {}): TextFilterField {
 	const serializer = config.serializer ?? textFilterSerializer
@@ -33,7 +36,11 @@ export function textFilterField(config: Partial<TextFilterFieldConfig> = {}): Te
 
 	const isDirty = computed(() => JSON.stringify(_value()) !== JSON.stringify(defaultValue))
 
-	function set(value: Partial<TextFilterValue>): void {
+	function set(value: TextFilterValue): void {
+		_value.set(value)
+	}
+
+	function update(value: Partial<TextFilterValue>): void {
 		_value.update(v => ({ ...v, ...value }))
 	}
 
@@ -53,6 +60,7 @@ export function textFilterField(config: Partial<TextFilterFieldConfig> = {}): Te
 		isDirty,
 		// METHODS
 		set,
+		update,
 		reset,
 		serialize,
 	}

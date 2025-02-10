@@ -24,6 +24,7 @@ export type BooleanFilterFieldConfig = {
 
 export type BooleanFilterField = FilterField<BooleanFilterValue> & {
 	type: 'boolean'
+	update: (value: Partial<BooleanFilterValue>) => void
 }
 
 export function booleanFilterField(
@@ -39,7 +40,11 @@ export function booleanFilterField(
 
 	const isDirty = computed(() => JSON.stringify(_value()) !== JSON.stringify(defaultValue))
 
-	function set(value: Partial<BooleanFilterValue>): void {
+	function set(value: BooleanFilterValue): void {
+		_value.set(value)
+	}
+
+	function update(value: Partial<BooleanFilterValue>): void {
 		_value.update(v => ({ ...v, ...value }))
 	}
 
@@ -59,6 +64,7 @@ export function booleanFilterField(
 		isDirty,
 		// METHODS
 		set,
+		update,
 		reset,
 		serialize,
 	}

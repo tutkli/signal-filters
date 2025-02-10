@@ -18,7 +18,7 @@ import { TextFilterField } from '../filters/filter-fields/text-filter'
 				[type]="type()"
 				[placeholder]="placeholder()"
 				[ngModel]="fieldValue.value"
-				(ngModelChange)="field.set({ value: $event })" />
+				(ngModelChange)="field.update({ value: $event })" />
 			@if (fieldValue.value) {
 				<button mat-icon-button matSuffix (click)="field.reset()">
 					<mat-icon>close</mat-icon>
