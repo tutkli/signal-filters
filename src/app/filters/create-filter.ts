@@ -76,6 +76,7 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 		return pairs
 	})
 
+	// TODO: when the page is not 1, the results should concat the previous value.
 	const dataResource = <K>(endpoint: string) =>
 		resource<K, Pairs>({
 			request: () => serializedPairs(),
