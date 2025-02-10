@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core'
 import { arrayFilterSerializer } from '../serializers'
-import { FilterField, FilterFields } from '../types'
+import { FilterField } from '../types'
 
 export type ArrayFilterValue = {
 	name: string
@@ -89,8 +89,4 @@ export function arrayFilterField(config: Partial<ArrayFilterFieldConfig> = {}): 
 		addValue,
 		removeValue,
 	}
-}
-
-export function isArrayFilterField(field: FilterFields | undefined): field is ArrayFilterField {
-	return field?.type === 'array'
 }

@@ -16,3 +16,13 @@ body {
 body.dark {
 	color-scheme: dark;
 }
+
+:root {
+	@include mat.slide-toggle-overrides(
+		(
+			selected-hover-handle-color: var(--mat-sys-on-primary),
+			selected-focus-handle-color: var(--mat-sys-on-primary),
+			selected-pressed-handle-color: var(--mat-sys-on-primary),
+		)
+	);
+}

@@ -21,19 +21,6 @@ import { FilterFieldWrapperComponent } from './filter-field-wrapper.ng'
 				(change)="field.update({ value: $event.checked })" />
 		</app-filter-field-wrapper>
 	`,
-	styles: `
-		@use '@angular/material' as mat;
-
-		:host {
-			@include mat.slide-toggle-overrides(
-				(
-					selected-hover-handle-color: var(--mat-sys-on-primary),
-					selected-focus-handle-color: var(--mat-sys-on-primary),
-					selected-pressed-handle-color: var(--mat-sys-on-primary),
-				)
-			);
-		}
-	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooleanFilterFieldComponent {

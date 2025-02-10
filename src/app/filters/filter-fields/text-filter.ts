@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core'
 import { textFilterSerializer } from '../serializers'
-import { FilterField, FilterFields } from '../types'
+import { FilterField } from '../types'
 
 export type TextFilterValue = {
 	value: string
@@ -64,8 +64,4 @@ export function textFilterField(config: Partial<TextFilterFieldConfig> = {}): Te
 		reset,
 		serialize,
 	}
-}
-
-export function isTextFilterField(field: FilterFields | undefined): field is TextFilterField {
-	return field?.type === 'text'
 }
