@@ -1,5 +1,6 @@
 import { JsonPipe, UpperCasePipe } from '@angular/common'
 import { Component } from '@angular/core'
+import { MatButton } from '@angular/material/button'
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle'
 import { MatDivider } from '@angular/material/divider'
 import { MatToolbar } from '@angular/material/toolbar'
@@ -22,26 +23,21 @@ import { FilterFieldName } from './filters/types'
 		MatButtonToggle,
 		MatButtonToggleGroup,
 		UpperCasePipe,
+		MatButton,
 	],
 	template: `
 		<mat-toolbar>
-			<app-text-filter-field
-				placeholder="Buscar..."
-				[fieldValue]="filter.fields.q.value()"
-				(valueChange)="filter.set({ q: $event })"
-				(reseted)="filter.reset(['q'])" />
+			<app-text-filter-field [filterField]="filter.fields.q" placeholder="Buscar..." />
 
 			<mat-divider vertical [style.height.px]="40" />
 
 			<app-boolean-filter-field
 				[fieldName]="FilterFieldName.visible"
-				[fieldValue]="filter.fields.visible.value()"
-				(valueChange)="filter.set({ visible: $event })"
-				(reseted)="filter.reset(['visible'])"
+				[filterField]="filter.fields.visible"
 				label="Visible" />
-		</mat-toolbar>
 
-		<div>
+			<mat-divider vertical [style.height.px]="40" />
+
 			<mat-button-toggle-group
 				hideMultipleSelectionIndicator
 				multiple
@@ -53,21 +49,28 @@ import { FilterFieldName } from './filters/types'
 					</mat-button-toggle>
 				}
 			</mat-button-toggle-group>
+		</mat-toolbar>
 
-			<button (click)="nextPage()" class="bg-primary text-on-primary">Next page</button>
+		<div class="container m-auto py-8 flex space-y-4 flex-col">
+			<div class="flex space-x-2">
+				<button mat-flat-button (click)="filter.fields.page.nextPage()">Next Page</button>
+				<button mat-flat-button (click)="filter.reset()">Reset All</button>
+			</div>
 
 			<div>
-				<button (click)="filter.reset()">Reset All</button>
+				<span class="font-medium">Filter is dirty:</span>
+				{{ filter.isDirty() }}
 			</div>
-			<div>Filter is dirty: {{ filter.isDirty() }}</div>
-			<pre>
-Serialized params:
-{{ filter.serializedPairs() | json }}</pre
-			>
-			<pre>
-Value:
-{{ filter.value() | json }}</pre
-			>
+
+			<div>
+				<span class="font-medium">Serialized params:</span>
+				<pre>{{ filter.serializedPairs() | json }}</pre>
+			</div>
+
+			<div>
+				<span class="font-medium">Filter value:</span>
+				<pre>{{ filter.value() | json }}</pre>
+			</div>
 		</div>
 	`,
 	styles: `
@@ -88,7 +91,9 @@ export class AppComponent {
 		status: arrayFilterField(),
 	})
 
-	statusValues = ['pending', 'progress', 'done'].map(value => arrayFilterValue({ value: value }))
+	statusValues = ['pending', 'progress', 'done'].map(value =>
+		arrayFilterValue({ name: value, value })
+	)
 
 	nextPage() {
 		this.filter.fields.page.nextPage()

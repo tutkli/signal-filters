@@ -1,28 +1,30 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { MatIconButton } from '@angular/material/button'
 import { MatFormField, MatSuffix } from '@angular/material/form-field'
 import { MatIcon } from '@angular/material/icon'
 import { MatInput } from '@angular/material/input'
-import { TextFilterValue } from '../filters/filter-fields/text-filter'
+import { TextFilterField } from '../filters/filter-fields/text-filter'
 
 @Component({
 	selector: 'app-text-filter-field',
 	imports: [MatFormField, MatInput, MatIconButton, MatIcon, MatSuffix, FormsModule],
 	template: `
+		@let field = filterField();
+		@let fieldValue = field.value();
 		<mat-form-field appearance="outline" subscriptSizing="dynamic">
 			<input
 				matInput
 				[type]="type()"
 				[placeholder]="placeholder()"
-				[ngModel]="fieldValue().value"
-				(ngModelChange)="updateValue($event)" />
-			@if (fieldValue().value) {
-				<button mat-icon-button matSuffix (click)="reseted.emit()">
+				[ngModel]="fieldValue.value"
+				(ngModelChange)="field.set({ value: $event })" />
+			@if (fieldValue.value) {
+				<button mat-icon-button matSuffix (click)="field.reset()">
 					<mat-icon>close</mat-icon>
 				</button>
 			} @else {
-				<button mat-icon-button matSuffix>
+				<button mat-icon-button matSuffix disabled>
 					<mat-icon matSuffix>search</mat-icon>
 				</button>
 			}
@@ -31,14 +33,7 @@ import { TextFilterValue } from '../filters/filter-fields/text-filter'
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFilterFieldComponent {
+	filterField = input.required<TextFilterField>()
 	placeholder = input.required<string>()
-	fieldValue = input.required<TextFilterValue>()
 	type = input<'text' | 'number'>('text')
-
-	valueChange = output<TextFilterValue>()
-	reseted = output<void>()
-
-	updateValue(value: string) {
-		this.valueChange.emit({ ...this.fieldValue(), value })
-	}
 }
