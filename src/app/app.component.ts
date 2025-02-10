@@ -10,6 +10,7 @@ import { createFilter } from './filters/create-filter'
 import { arrayFilterField, arrayFilterValue } from './filters/filter-fields/array-filter'
 import { booleanFilterField } from './filters/filter-fields/boolean-filter'
 import { textFilterField } from './filters/filter-fields/text-filter'
+import { arrayFilterCommaSerializer } from './filters/serializers'
 import { FilterFieldName } from './filters/types'
 
 @Component({
@@ -53,7 +54,7 @@ import { FilterFieldName } from './filters/types'
 
 		<div class="container m-auto py-8 flex space-y-4 flex-col">
 			<div class="flex space-x-2">
-				<button mat-flat-button (click)="filter.fields.page.nextPage()">Next Page</button>
+				<button mat-flat-button (click)="filter.nextPage()">Next Page</button>
 				<button mat-flat-button (click)="filter.reset()">Reset All</button>
 			</div>
 
@@ -90,7 +91,7 @@ export class AppComponent {
 		q: textFilterField(),
 		search: textFilterField(),
 		visible: booleanFilterField(),
-		status: arrayFilterField(),
+		status: arrayFilterField({ serializer: arrayFilterCommaSerializer }),
 	})
 
 	data = this.filter.data('https://my-filter-api.com')

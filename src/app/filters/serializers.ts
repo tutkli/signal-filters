@@ -42,5 +42,6 @@ export const arrayFilterCommaSerializer = (fieldName: string, values: ArrayFilte
 		.filter(({ selected }) => selected)
 		.map(({ value }) => value.toString())
 		.join(',')
+	if (!commaString) return
 	return { [fieldName]: commaString }
 }

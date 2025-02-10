@@ -21,6 +21,12 @@ filter.fields.q.update({ value: 'query' }) // Partial change
 // Get current values
 filter.value()
 
+// Get current page
+filter.page()
+
+// Set next page
+filter.nextPage()
+
 // Get serialized values
 filter.serializedPairs()
 

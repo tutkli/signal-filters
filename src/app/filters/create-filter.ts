@@ -1,12 +1,9 @@
-import { computed, effect, resource } from '@angular/core'
-import { isLimitFilterField, limitFilterField } from './filter-fields/limit-filter'
-import { isPageFilterField, pageFilterField } from './filter-fields/page-filter'
+import { computed, linkedSignal, resource, signal } from '@angular/core'
 import {
 	ExtractFieldValue,
 	FilterField,
 	FilterFieldName,
 	FilterFields,
-	FilterFieldsWithPagination,
 	FilterValueChanges,
 	Pairs,
 } from './types'
@@ -29,6 +26,12 @@ import {
  * // Get current values
  * filter.value()
  *
+ * // Get current page
+ * filter.page()
+ *
+ * // Set next page
+ * filter.nextPage()
+ *
  * // Get serialized values
  * filter.serializedPairs()
  *
@@ -39,43 +42,38 @@ import {
  * filter.reset([FilterFieldName.q])
  */
 export function createFilter<T extends Partial<Record<FilterFieldName, FilterFields>>>(
-	initialFields: T
+	filterFields: T,
+	limit: number = 20
 ) {
-	const fields = initFields()
-	const fieldKeys = Object.keys(fields) as (keyof FilterFieldsWithPagination<T>)[]
+	const fields = { ...filterFields }
+	const fieldKeys = Object.keys(fields) as (keyof T)[]
 
 	const isDirty = computed(() => {
-		return fieldKeys
-			.filter(key => key !== FilterFieldName.page && key !== FilterFieldName.limit)
-			.map(fieldKey => getField(fieldKey))
-			.some(field => field.isDirty())
+		return fieldKeys.map(fieldKey => getField(fieldKey)).some(field => field.isDirty())
 	})
 
 	const value = computed(() => {
-		return fieldKeys.reduce(
-			(acc, key) => {
-				const field = getField(key)
-				acc[key] = field.value() as FilterValueChanges<FilterFieldsWithPagination<T>>[typeof key]
-				return acc
-			},
-			{} as FilterValueChanges<FilterFieldsWithPagination<T>>
-		)
+		return fieldKeys.reduce((acc, key) => {
+			const field = getField(key)
+			acc[key] = field.value() as FilterValueChanges<T>[typeof key]
+			return acc
+		}, {} as FilterValueChanges<T>)
 	})
 
+	const _page = linkedSignal<FilterValueChanges<T>, number>({
+		source: value,
+		computation: () => 1,
+	})
+	const _limit = signal(limit)
+
 	const serializedPairs = computed(() => {
-		return fieldKeys.reduce<Pairs>((acc, key) => {
+		const pairs = fieldKeys.reduce<Pairs>((acc, key) => {
 			const field = getField(key)
 			return { ...acc, ...field.serialize(key as string) }
 		}, {})
-	})
-
-	// This effect ensures that the page is reseted when any of the field values changes.
-	effect(() => {
-		const fieldValues = fieldKeys
-			.filter(key => key !== FilterFieldName.page && key !== FilterFieldName.limit)
-			.map(fieldKey => getField(fieldKey).value())
-		const page = getField(FilterFieldName.page)
-		page.reset()
+		pairs['page'] = String(_page())
+		pairs['limit'] = String(_limit())
+		return pairs
 	})
 
 	const dataResource = <K>(endpoint: string) =>
@@ -88,39 +86,38 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 			},
 		})
 
-	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
-		return fields[key] as FilterField<ExtractFieldValue<FilterFieldsWithPagination<T>[K]>>
+	function getField<K extends keyof T>(key: K) {
+		return fields[key] as FilterField<ExtractFieldValue<T[K]>>
 	}
 
-	function set<K extends keyof FilterFieldsWithPagination<T>>(
+	function set<K extends keyof T>(
 		newFields: Partial<{
-			[key in K]: ExtractFieldValue<FilterFieldsWithPagination<T>[K]>
+			[key in K]: ExtractFieldValue<T[K]>
 		}>
 	) {
 		for (const fieldKey in newFields) {
 			const field = getField(fieldKey as K)
-			field.set(newFields[fieldKey as K] as ExtractFieldValue<FilterFieldsWithPagination<T>[K]>)
+			field.set(newFields[fieldKey as K] as ExtractFieldValue<T[K]>)
 		}
 	}
 
-	function reset(fieldsToReset?: (keyof FilterFieldsWithPagination<T>)[]) {
+	function reset(fieldsToReset?: (keyof T)[]) {
 		const fieldsToProcess = fieldsToReset ?? fieldKeys
 		for (const field of fieldsToProcess) {
 			getField(field).reset()
 		}
+		_page.set(1)
 	}
 
-	function initFields() {
-		return {
-			...initialFields,
-			page: isPageFilterField(initialFields.page) ? initialFields.page : pageFilterField(),
-			limit: isLimitFilterField(initialFields.limit) ? initialFields.limit : limitFilterField(),
-		}
+	function nextPage() {
+		_page.update(v => v + 1)
 	}
 
 	return {
 		fields,
 		// SIGNALS
+		page: _page.asReadonly(),
+		limit: _limit.asReadonly(),
 		isDirty,
 		value,
 		serializedPairs,
@@ -129,5 +126,6 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 		// METHODS
 		set,
 		reset,
+		nextPage,
 	}
 }
