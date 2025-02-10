@@ -84,6 +84,8 @@ import { FilterFieldName } from './filters/types'
 	`,
 })
 export class AppComponent {
+	protected readonly FilterFieldName = FilterFieldName
+
 	filter = createFilter({
 		q: textFilterField(),
 		search: textFilterField(),
@@ -94,10 +96,4 @@ export class AppComponent {
 	statusValues = ['pending', 'progress', 'done'].map(value =>
 		arrayFilterValue({ name: value, value })
 	)
-
-	nextPage() {
-		this.filter.fields.page.nextPage()
-	}
-
-	protected readonly FilterFieldName = FilterFieldName
 }
