@@ -93,6 +93,8 @@ export class AppComponent {
 		status: arrayFilterField(),
 	})
 
+	data = this.filter.data('https://my-filter-api.com')
+
 	statusValues = ['pending', 'progress', 'done'].map(value =>
 		arrayFilterValue({ name: value, value })
 	)

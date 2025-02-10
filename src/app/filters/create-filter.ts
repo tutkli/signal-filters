@@ -1,4 +1,4 @@
-import { computed, effect } from '@angular/core'
+import { computed, effect, resource } from '@angular/core'
 import { isLimitFilterField, limitFilterField } from './filter-fields/limit-filter'
 import { isPageFilterField, pageFilterField } from './filter-fields/page-filter'
 import {
@@ -17,12 +17,14 @@ import {
  *
  * @example
  * const filter = createFilter({
- *   search: textFilterField(),
+ *   q: textFilterField(),
  *   visible: booleanFilterField()
  * });
  *
  * // Update filter values
- * filter.set({ q: 'query' })
+ * filter.set({q: textFilterValue({ value: 'query' })})
+ * filter.fields.q.set(textFilterValue({ value: 'query' }))
+ * filter.fields.q.update({ value: 'query' }) // Partial change
  *
  * // Get current values
  * filter.value()
@@ -76,6 +78,16 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 		page.reset()
 	})
 
+	const dataResource = <K>(endpoint: string) =>
+		resource<K, Pairs>({
+			request: () => serializedPairs(),
+			loader: async ({ request: serializedParams, abortSignal }) => {
+				const params = new URLSearchParams(serializedParams)
+				const response = await fetch(`${endpoint}?${params.toString()}`, { signal: abortSignal })
+				return response.json()
+			},
+		})
+
 	function getField<K extends keyof FilterFieldsWithPagination<T>>(key: K) {
 		return fields[key] as FilterField<ExtractFieldValue<FilterFieldsWithPagination<T>[K]>>
 	}
@@ -112,6 +124,8 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 		isDirty,
 		value,
 		serializedPairs,
+		// RESOURCE
+		data: dataResource,
 		// METHODS
 		set,
 		reset,
