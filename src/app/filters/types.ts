@@ -3,7 +3,7 @@ import { ArrayFilterField } from './filter-fields/array-filter'
 import { BooleanFilterField } from './filter-fields/boolean-filter'
 import { TextFilterField } from './filter-fields/text-filter'
 
-export type Pairs = { [key: string]: string }
+export type Params = { [key: string]: string }
 export type FilterField<T> = {
 	active: Signal<boolean>
 	isDirty: Signal<boolean>

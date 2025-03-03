@@ -5,7 +5,7 @@ import {
 	FilterFieldName,
 	FilterFields,
 	FilterValueChanges,
-	Pairs,
+	Params,
 } from './types'
 
 /**
@@ -66,8 +66,8 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 	})
 	const _limit = signal(limit)
 
-	const serializedPairs = computed(() => {
-		const pairs = fieldKeys.reduce<Pairs>((acc, key) => {
+	const serializedParams = computed(() => {
+		const pairs = fieldKeys.reduce<Params>((acc, key) => {
 			const field = getField(key)
 			return { ...acc, ...field.serialize(key as string) }
 		}, {})
@@ -78,8 +78,8 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 
 	// TODO: when the page is not 1, the results should concat the previous value.
 	const dataResource = <K>(endpoint: string) =>
-		resource<K, Pairs>({
-			request: () => serializedPairs(),
+		resource<K, Params>({
+			request: () => serializedParams(),
 			loader: async ({ request: serializedParams, abortSignal }) => {
 				const params = new URLSearchParams(serializedParams)
 				const response = await fetch(`${endpoint}?${params.toString()}`, { signal: abortSignal })
@@ -121,7 +121,7 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 		limit: _limit.asReadonly(),
 		isDirty,
 		value,
-		serializedPairs,
+		serializedPairs: serializedParams,
 		// RESOURCE
 		data: dataResource,
 		// METHODS
