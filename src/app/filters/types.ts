@@ -1,9 +1,21 @@
-import { Signal } from '@angular/core'
+import { ResourceRef, Signal } from '@angular/core'
 import { ArrayFilterField } from './filter-fields/array-filter'
 import { BooleanFilterField } from './filter-fields/boolean-filter'
 import { TextFilterField } from './filter-fields/text-filter'
 
 export type Params = { [key: string]: string }
+export type SignalFilter<T extends Partial<Record<FilterFieldName, FilterFields>>, Data> = {
+	fields: T
+	page: Signal<number>
+	limit: Signal<number>
+	isDirty: Signal<boolean>
+	value: Signal<FilterValueChanges<T>>
+	serializedParams: Signal<Params>
+	data: (endpoint: string) => ResourceRef<Data>
+	set: <K extends keyof T>(newFields: Partial<{ [key in K]: ExtractFieldValue<T[K]> }>) => void
+	reset: () => void
+	nextPage: () => void
+}
 export type FilterField<T> = {
 	active: Signal<boolean>
 	isDirty: Signal<boolean>
@@ -22,4 +34,5 @@ export enum FilterFieldName {
 	search = 'search',
 	visible = 'visible',
 	status = 'status',
+	sfw = 'sfw',
 }

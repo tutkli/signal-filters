@@ -63,7 +63,7 @@ import { FilterFieldName } from './filters/types'
 
 			<div>
 				<span class="font-medium">Serialized params:</span>
-				<pre>{{ filter.serializedPairs() | json }}</pre>
+				<pre>{{ filter.serializedParams() | json }}</pre>
 			</div>
 
 			<div>
@@ -83,7 +83,7 @@ export class AppComponent {
 		status: arrayFilterField({ serializer: arrayFilterCommaSerializer }),
 	})
 
-	data = this.filter.data('https://my-filter-api.com')
+	data = this.filter.data('https://api.example.com')
 
 	availableStatuses = ['pending', 'progress', 'done'].map(value =>
 		arrayFilterValue({ name: value, value })

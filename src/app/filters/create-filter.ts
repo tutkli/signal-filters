@@ -6,16 +6,40 @@ import {
 	FilterFields,
 	FilterValueChanges,
 	Params,
+	SignalFilter,
 } from './types'
 
 /**
  * Creates a filter management system with pagination support.
  * The filter must be created within an injection context.
  *
+ * @template T - Filter fields configuration type
+ * @template Data - Data result type
+ *
+ * @param {T} filterFields - Configuration object for filter fields
+ * @param {number} [limit=20] - Number of items per page
+ *
+ * @returns {SignalFilter<T, Data>} Filter instance with the following features:
+ *
+ * @property {T} fields - Direct access to filter fields
+ * @property {Signal<number>} page - Current page (readonly)
+ * @property {Signal<number>} limit - Items per page (readonly)
+ * @property {Signal<boolean>} isDirty - Whether any field has been modified
+ * @property {Signal<FilterValueChanges<T>>} value - Current filter values
+ * @property {Signal<Params>} serializedParams - URL-ready parameters
+ * @property {(enpoint: string) => ResourceRef<Data>} data - resourceRef for the given endpoint
+ *
+ * Methods:
+ * - `set(fields)` - Update multiple filter values
+ * - `reset([fieldNames])` - Reset all or specific fields
+ * - `nextPage()` - Load next page
+ * - `data(endpoint)` - Get filtered data from endpoint
+ *
  * @example
  * const filter = createFilter({
  *   q: textFilterField(),
- *   visible: booleanFilterField()
+ *   visible: booleanFilterField(),
+ *   status: arrayFilterField({ serializer: arrayFilterCommaSerializer }),
  * });
  *
  * // Update filter values
@@ -23,8 +47,15 @@ import {
  * filter.fields.q.set(textFilterValue({ value: 'query' }))
  * filter.fields.q.update({ value: 'query' }) // Partial change
  *
- * // Get current values
+ * // Get endpoint data based on selected fields
+ * const data = filter.data('https://api.example.com')
+ *
+ * // Get filter value
  * filter.value()
+ *
+ * // Check if filter is dirty
+ * filter.isDirty()
+ * filter.fields.q.isDirty()
  *
  * // Get current page
  * filter.page()
@@ -32,19 +63,17 @@ import {
  * // Set next page
  * filter.nextPage()
  *
- * // Get serialized values
- * filter.serializedPairs()
+ * // Get serialized queryParams
+ * filter.serializedParams()
  *
- * // Reset all fields
+ * // Reset fields
  * filter.reset()
- *
- * // Reset specific fields
  * filter.reset([FilterFieldName.q])
  */
-export function createFilter<T extends Partial<Record<FilterFieldName, FilterFields>>>(
-	filterFields: T,
-	limit: number = 20
-) {
+export function createFilter<
+	T extends Partial<Record<FilterFieldName, FilterFields>>,
+	Data extends unknown[],
+>(filterFields: T, limit: number = 20): SignalFilter<T, Data> {
 	const fields = { ...filterFields }
 	const fieldKeys = Object.keys(fields) as (keyof T)[]
 
@@ -66,25 +95,32 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 	})
 	const _limit = signal(limit)
 
-	const serializedParams = computed(() => {
-		const pairs = fieldKeys.reduce<Params>((acc, key) => {
-			const field = getField(key)
-			return { ...acc, ...field.serialize(key as string) }
-		}, {})
-		pairs['page'] = String(_page())
-		pairs['limit'] = String(_limit())
-		return pairs
+	const serializedParams = computed<Params>(() => {
+		return {
+			page: String(_page()),
+			limit: String(_limit()),
+			...fieldKeys.reduce<Params>((acc, key) => {
+				const field = getField(key)
+				return { ...acc, ...field.serialize(key as string) }
+			}, {}),
+		}
 	})
 
-	// TODO: when the page is not 1, the results should concat the previous value.
-	const dataResource = <K>(endpoint: string) =>
-		resource<K, Params>({
+	let currentData: Data = [] as unknown as Data
+	const dataResource = (endpoint: string) =>
+		resource<Data, Params>({
 			request: () => serializedParams(),
 			loader: async ({ request: serializedParams, abortSignal }) => {
 				const params = new URLSearchParams(serializedParams)
 				const response = await fetch(`${endpoint}?${params.toString()}`, { signal: abortSignal })
-				return response.json()
+				const jsonData = (await response.json()) as Data
+
+				if (_page() === 1) currentData = jsonData
+				else currentData = [...currentData, ...jsonData] as Data
+
+				return currentData
 			},
+			defaultValue: [] as unknown as Data,
 		})
 
 	function getField<K extends keyof T>(key: K) {
@@ -121,7 +157,7 @@ export function createFilter<T extends Partial<Record<FilterFieldName, FilterFie
 		limit: _limit.asReadonly(),
 		isDirty,
 		value,
-		serializedPairs: serializedParams,
+		serializedParams,
 		// RESOURCE
 		data: dataResource,
 		// METHODS
