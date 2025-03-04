@@ -34,5 +34,7 @@ export enum FilterFieldName {
 	search = 'search',
 	visible = 'visible',
 	status = 'status',
-	sfw = 'sfw',
+	firstName = 'firstName',
+	isActive = 'isActive',
+	favoriteColors = 'favoriteColors',
 }

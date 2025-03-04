@@ -1,0 +1,2166 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Emma",
+      "lastName": "Martinez",
+      "email": "user1@example.com",
+      "isActive": true,
+      "age": 24,
+      "phone": "555-0001",
+      "address": "236 Cedar Street",
+      "createdAt": "2024-04-11T23:52:49.026Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "yellow",
+        "orange"
+      ],
+      "hobbies": [
+        "reading",
+        "traveling",
+        "gaming",
+        "gardening",
+        "cooking"
+      ]
+    },
+    {
+      "id": "2",
+      "firstName": "Noah",
+      "lastName": "Smith",
+      "email": "user2@example.com",
+      "isActive": true,
+      "age": 48,
+      "phone": "555-0002",
+      "address": "737 Oak Street",
+      "createdAt": "2024-12-25T18:08:03.214Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "purple"
+      ],
+      "hobbies": [
+        "gardening",
+        "traveling",
+        "gaming"
+      ]
+    },
+    {
+      "id": "3",
+      "firstName": "Sophia",
+      "lastName": "Davis",
+      "email": "user3@example.com",
+      "isActive": true,
+      "age": 51,
+      "phone": "555-0003",
+      "address": "142 Washington Street",
+      "createdAt": "2024-03-17T02:16:29.955Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "green"
+      ],
+      "hobbies": [
+        "cooking",
+        "reading",
+        "gaming",
+        "gardening"
+      ]
+    },
+    {
+      "id": "4",
+      "firstName": "Sophia",
+      "lastName": "Garcia",
+      "email": "user4@example.com",
+      "isActive": true,
+      "age": 64,
+      "phone": "555-0004",
+      "address": "534 Washington Street",
+      "createdAt": "2024-04-30T23:05:30.592Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "blue",
+        "white"
+      ],
+      "hobbies": [
+        "reading",
+        "cooking"
+      ]
+    },
+    {
+      "id": "5",
+      "firstName": "Elijah",
+      "lastName": "Smith",
+      "email": "user5@example.com",
+      "isActive": true,
+      "age": 39,
+      "phone": "555-0005",
+      "address": "525 Pine Street",
+      "createdAt": "2024-03-20T18:06:28.760Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "yellow",
+        "blue",
+        "red"
+      ],
+      "hobbies": [
+        "painting",
+        "cooking",
+        "gaming",
+        "reading",
+        "hiking"
+      ]
+    },
+    {
+      "id": "6",
+      "firstName": "James",
+      "lastName": "Miller",
+      "email": "user6@example.com",
+      "isActive": true,
+      "age": 61,
+      "phone": "555-0006",
+      "address": "959 Main Street",
+      "createdAt": "2024-06-06T06:24:13.226Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "gray",
+        "blue"
+      ],
+      "hobbies": [
+        "photography",
+        "hiking",
+        "swimming",
+        "dancing",
+        "cooking"
+      ]
+    },
+    {
+      "id": "7",
+      "firstName": "Elijah",
+      "lastName": "Brown",
+      "email": "user7@example.com",
+      "isActive": true,
+      "age": 18,
+      "phone": "555-0007",
+      "address": "529 Park Street",
+      "createdAt": "2024-12-16T05:26:01.342Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "red",
+        "yellow",
+        "green"
+      ],
+      "hobbies": [
+        "cooking",
+        "painting",
+        "gaming"
+      ]
+    },
+    {
+      "id": "8",
+      "firstName": "Noah",
+      "lastName": "Smith",
+      "email": "user8@example.com",
+      "isActive": true,
+      "age": 62,
+      "phone": "555-0008",
+      "address": "464 Pine Street",
+      "createdAt": "2024-03-10T15:03:46.475Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "blue",
+        "gray",
+        "white"
+      ],
+      "hobbies": [
+        "traveling",
+        "gardening",
+        "swimming",
+        "gaming",
+        "photography"
+      ]
+    },
+    {
+      "id": "9",
+      "firstName": "Emma",
+      "lastName": "Garcia",
+      "email": "user9@example.com",
+      "isActive": true,
+      "age": 55,
+      "phone": "555-0009",
+      "address": "965 Hill Street",
+      "createdAt": "2024-12-07T08:53:18.675Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "orange",
+        "purple",
+        "green"
+      ],
+      "hobbies": [
+        "reading",
+        "hiking"
+      ]
+    },
+    {
+      "id": "10",
+      "firstName": "Elijah",
+      "lastName": "Williams",
+      "email": "user10@example.com",
+      "isActive": true,
+      "age": 58,
+      "phone": "555-0010",
+      "address": "775 Park Street",
+      "createdAt": "2024-07-31T19:27:55.423Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "black",
+        "green",
+        "blue"
+      ],
+      "hobbies": [
+        "reading",
+        "swimming",
+        "gardening",
+        "gaming"
+      ]
+    },
+    {
+      "id": "11",
+      "firstName": "Sophia",
+      "lastName": "Brown",
+      "email": "user11@example.com",
+      "isActive": true,
+      "age": 53,
+      "phone": "555-0011",
+      "address": "877 Maple Street",
+      "createdAt": "2025-02-05T00:57:13.445Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "gray"
+      ],
+      "hobbies": [
+        "hiking",
+        "reading",
+        "gaming",
+        "painting"
+      ]
+    },
+    {
+      "id": "12",
+      "firstName": "Ava",
+      "lastName": "Martinez",
+      "email": "user12@example.com",
+      "isActive": true,
+      "age": 54,
+      "phone": "555-0012",
+      "address": "134 Hill Street",
+      "createdAt": "2024-12-07T10:52:54.858Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "orange"
+      ],
+      "hobbies": [
+        "gaming",
+        "traveling"
+      ]
+    },
+    {
+      "id": "13",
+      "firstName": "Liam",
+      "lastName": "Williams",
+      "email": "user13@example.com",
+      "isActive": false,
+      "age": 45,
+      "phone": "555-0013",
+      "address": "397 Pine Street",
+      "createdAt": "2024-07-21T03:04:11.917Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "purple"
+      ],
+      "hobbies": [
+        "gardening",
+        "traveling",
+        "photography",
+        "hiking",
+        "swimming"
+      ]
+    },
+    {
+      "id": "14",
+      "firstName": "Sophia",
+      "lastName": "Johnson",
+      "email": "user14@example.com",
+      "isActive": true,
+      "age": 67,
+      "phone": "555-0014",
+      "address": "705 Main Street",
+      "createdAt": "2024-03-23T23:02:04.653Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "white"
+      ],
+      "hobbies": [
+        "swimming",
+        "reading",
+        "photography",
+        "gaming"
+      ]
+    },
+    {
+      "id": "15",
+      "firstName": "William",
+      "lastName": "Miller",
+      "email": "user15@example.com",
+      "isActive": true,
+      "age": 66,
+      "phone": "555-0015",
+      "address": "407 Cedar Street",
+      "createdAt": "2025-02-20T03:51:58.377Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "red",
+        "blue"
+      ],
+      "hobbies": [
+        "gaming",
+        "photography",
+        "reading"
+      ]
+    },
+    {
+      "id": "16",
+      "firstName": "Noah",
+      "lastName": "Garcia",
+      "email": "user16@example.com",
+      "isActive": true,
+      "age": 43,
+      "phone": "555-0016",
+      "address": "519 Hill Street",
+      "createdAt": "2024-03-08T17:55:23.227Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "yellow",
+        "green",
+        "red"
+      ],
+      "hobbies": [
+        "gaming",
+        "reading",
+        "cooking"
+      ]
+    },
+    {
+      "id": "17",
+      "firstName": "Elijah",
+      "lastName": "Martinez",
+      "email": "user17@example.com",
+      "isActive": true,
+      "age": 67,
+      "phone": "555-0017",
+      "address": "516 Park Street",
+      "createdAt": "2024-03-14T12:56:44.947Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "blue"
+      ],
+      "hobbies": [
+        "reading",
+        "painting",
+        "cooking",
+        "gaming",
+        "photography"
+      ]
+    },
+    {
+      "id": "18",
+      "firstName": "Liam",
+      "lastName": "Rodriguez",
+      "email": "user18@example.com",
+      "isActive": true,
+      "age": 60,
+      "phone": "555-0018",
+      "address": "34 Park Street",
+      "createdAt": "2024-10-28T15:22:11.600Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "blue",
+        "purple",
+        "red"
+      ],
+      "hobbies": [
+        "reading",
+        "gaming"
+      ]
+    },
+    {
+      "id": "19",
+      "firstName": "Olivia",
+      "lastName": "Miller",
+      "email": "user19@example.com",
+      "isActive": true,
+      "age": 66,
+      "phone": "555-0019",
+      "address": "735 Hill Street",
+      "createdAt": "2024-05-04T21:06:22.670Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue",
+        "red",
+        "green"
+      ],
+      "hobbies": [
+        "reading",
+        "gaming",
+        "cooking",
+        "painting"
+      ]
+    },
+    {
+      "id": "20",
+      "firstName": "William",
+      "lastName": "Miller",
+      "email": "user20@example.com",
+      "isActive": false,
+      "age": 34,
+      "phone": "555-0020",
+      "address": "860 Washington Street",
+      "createdAt": "2024-12-10T20:27:18.280Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "orange",
+        "black",
+        "purple"
+      ],
+      "hobbies": [
+        "painting",
+        "gaming"
+      ]
+    },
+    {
+      "id": "21",
+      "firstName": "James",
+      "lastName": "Johnson",
+      "email": "user21@example.com",
+      "isActive": false,
+      "age": 68,
+      "phone": "555-0021",
+      "address": "642 Main Street",
+      "createdAt": "2024-04-28T00:13:36.347Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "yellow",
+        "purple"
+      ],
+      "hobbies": [
+        "cooking",
+        "gaming"
+      ]
+    },
+    {
+      "id": "22",
+      "firstName": "Charlotte",
+      "lastName": "Williams",
+      "email": "user22@example.com",
+      "isActive": false,
+      "age": 35,
+      "phone": "555-0022",
+      "address": "173 Pine Street",
+      "createdAt": "2024-03-12T18:33:18.148Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "red",
+        "blue",
+        "green"
+      ],
+      "hobbies": [
+        "photography",
+        "traveling"
+      ]
+    },
+    {
+      "id": "23",
+      "firstName": "Sophia",
+      "lastName": "Garcia",
+      "email": "user23@example.com",
+      "isActive": false,
+      "age": 42,
+      "phone": "555-0023",
+      "address": "454 Pine Street",
+      "createdAt": "2024-11-19T08:02:59.493Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "gray"
+      ],
+      "hobbies": [
+        "gardening",
+        "traveling",
+        "painting"
+      ]
+    },
+    {
+      "id": "24",
+      "firstName": "Olivia",
+      "lastName": "Smith",
+      "email": "user24@example.com",
+      "isActive": true,
+      "age": 52,
+      "phone": "555-0024",
+      "address": "664 Oak Street",
+      "createdAt": "2025-01-13T10:29:21.439Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "white",
+        "blue"
+      ],
+      "hobbies": [
+        "gaming",
+        "cooking",
+        "painting",
+        "reading",
+        "swimming"
+      ]
+    },
+    {
+      "id": "25",
+      "firstName": "James",
+      "lastName": "Brown",
+      "email": "user25@example.com",
+      "isActive": false,
+      "age": 59,
+      "phone": "555-0025",
+      "address": "177 Maple Street",
+      "createdAt": "2024-09-17T22:50:40.299Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "gray"
+      ],
+      "hobbies": [
+        "reading",
+        "gaming",
+        "cooking"
+      ]
+    },
+    {
+      "id": "26",
+      "firstName": "William",
+      "lastName": "Rodriguez",
+      "email": "user26@example.com",
+      "isActive": false,
+      "age": 36,
+      "phone": "555-0026",
+      "address": "832 Park Street",
+      "createdAt": "2024-05-09T14:57:25.731Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "green"
+      ],
+      "hobbies": [
+        "traveling",
+        "gaming",
+        "reading"
+      ]
+    },
+    {
+      "id": "27",
+      "firstName": "Emma",
+      "lastName": "Williams",
+      "email": "user27@example.com",
+      "isActive": true,
+      "age": 22,
+      "phone": "555-0027",
+      "address": "254 Maple Street",
+      "createdAt": "2024-08-25T05:37:57.001Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue",
+        "green",
+        "gray"
+      ],
+      "hobbies": [
+        "gardening",
+        "traveling",
+        "cooking",
+        "reading"
+      ]
+    },
+    {
+      "id": "28",
+      "firstName": "Elijah",
+      "lastName": "Martinez",
+      "email": "user28@example.com",
+      "isActive": true,
+      "age": 20,
+      "phone": "555-0028",
+      "address": "772 Hill Street",
+      "createdAt": "2024-05-13T00:40:51.649Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "purple"
+      ],
+      "hobbies": [
+        "reading",
+        "gaming",
+        "painting",
+        "cooking",
+        "hiking"
+      ]
+    },
+    {
+      "id": "29",
+      "firstName": "Olivia",
+      "lastName": "Rodriguez",
+      "email": "user29@example.com",
+      "isActive": false,
+      "age": 62,
+      "phone": "555-0029",
+      "address": "757 Lake Street",
+      "createdAt": "2024-04-20T23:38:15.142Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "green"
+      ],
+      "hobbies": [
+        "reading",
+        "gaming",
+        "cooking"
+      ]
+    },
+    {
+      "id": "30",
+      "firstName": "Elijah",
+      "lastName": "Garcia",
+      "email": "user30@example.com",
+      "isActive": true,
+      "age": 51,
+      "phone": "555-0030",
+      "address": "479 Maple Street",
+      "createdAt": "2024-11-25T15:26:12.764Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue",
+        "green",
+        "yellow"
+      ],
+      "hobbies": [
+        "gardening",
+        "painting"
+      ]
+    },
+    {
+      "id": "31",
+      "firstName": "Olivia",
+      "lastName": "Davis",
+      "email": "user31@example.com",
+      "isActive": true,
+      "age": 40,
+      "phone": "555-0031",
+      "address": "332 Lake Street",
+      "createdAt": "2024-08-16T07:29:59.132Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "blue"
+      ],
+      "hobbies": [
+        "photography",
+        "gaming",
+        "dancing"
+      ]
+    },
+    {
+      "id": "32",
+      "firstName": "Noah",
+      "lastName": "Brown",
+      "email": "user32@example.com",
+      "isActive": true,
+      "age": 35,
+      "phone": "555-0032",
+      "address": "75 Oak Street",
+      "createdAt": "2024-09-30T15:15:49.906Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "black",
+        "blue"
+      ],
+      "hobbies": [
+        "gardening",
+        "cooking",
+        "traveling",
+        "gaming"
+      ]
+    },
+    {
+      "id": "33",
+      "firstName": "James",
+      "lastName": "Garcia",
+      "email": "user33@example.com",
+      "isActive": false,
+      "age": 28,
+      "phone": "555-0033",
+      "address": "441 Main Street",
+      "createdAt": "2024-09-19T06:19:15.670Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "white",
+        "green"
+      ],
+      "hobbies": [
+        "gaming",
+        "reading",
+        "cooking"
+      ]
+    },
+    {
+      "id": "34",
+      "firstName": "William",
+      "lastName": "Johnson",
+      "email": "user34@example.com",
+      "isActive": true,
+      "age": 24,
+      "phone": "555-0034",
+      "address": "304 Cedar Street",
+      "createdAt": "2024-05-12T12:23:05.032Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "green",
+        "red"
+      ],
+      "hobbies": [
+        "gardening",
+        "painting",
+        "traveling",
+        "photography"
+      ]
+    },
+    {
+      "id": "35",
+      "firstName": "Elijah",
+      "lastName": "Brown",
+      "email": "user35@example.com",
+      "isActive": true,
+      "age": 64,
+      "phone": "555-0035",
+      "address": "36 Hill Street",
+      "createdAt": "2024-06-21T04:47:50.611Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "blue",
+        "yellow"
+      ],
+      "hobbies": [
+        "traveling",
+        "reading"
+      ]
+    },
+    {
+      "id": "36",
+      "firstName": "Elijah",
+      "lastName": "Brown",
+      "email": "user36@example.com",
+      "isActive": true,
+      "age": 32,
+      "phone": "555-0036",
+      "address": "78 Cedar Street",
+      "createdAt": "2025-02-26T11:56:56.885Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "blue"
+      ],
+      "hobbies": [
+        "gaming",
+        "reading",
+        "cooking",
+        "painting",
+        "hiking"
+      ]
+    },
+    {
+      "id": "37",
+      "firstName": "Ava",
+      "lastName": "Johnson",
+      "email": "user37@example.com",
+      "isActive": true,
+      "age": 60,
+      "phone": "555-0037",
+      "address": "842 Cedar Street",
+      "createdAt": "2025-01-07T14:17:07.323Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "yellow",
+        "blue",
+        "red"
+      ],
+      "hobbies": [
+        "gardening",
+        "reading",
+        "gaming",
+        "traveling"
+      ]
+    },
+    {
+      "id": "38",
+      "firstName": "Liam",
+      "lastName": "Garcia",
+      "email": "user38@example.com",
+      "isActive": true,
+      "age": 28,
+      "phone": "555-0038",
+      "address": "814 Hill Street",
+      "createdAt": "2024-12-01T02:00:10.913Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "white",
+        "green"
+      ],
+      "hobbies": [
+        "reading",
+        "painting"
+      ]
+    },
+    {
+      "id": "39",
+      "firstName": "Noah",
+      "lastName": "Jones",
+      "email": "user39@example.com",
+      "isActive": true,
+      "age": 38,
+      "phone": "555-0039",
+      "address": "365 Oak Street",
+      "createdAt": "2024-10-26T13:25:45.014Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "black",
+        "red",
+        "blue"
+      ],
+      "hobbies": [
+        "reading",
+        "cooking",
+        "gaming",
+        "painting"
+      ]
+    },
+    {
+      "id": "40",
+      "firstName": "William",
+      "lastName": "Garcia",
+      "email": "user40@example.com",
+      "isActive": true,
+      "age": 28,
+      "phone": "555-0040",
+      "address": "910 Maple Street",
+      "createdAt": "2025-03-01T07:27:23.405Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "green"
+      ],
+      "hobbies": [
+        "gardening",
+        "hiking",
+        "gaming",
+        "swimming",
+        "dancing"
+      ]
+    },
+    {
+      "id": "41",
+      "firstName": "William",
+      "lastName": "Jones",
+      "email": "user41@example.com",
+      "isActive": true,
+      "age": 66,
+      "phone": "555-0041",
+      "address": "388 Lake Street",
+      "createdAt": "2024-11-10T05:11:11.339Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "green"
+      ],
+      "hobbies": [
+        "hiking",
+        "reading",
+        "cooking",
+        "gaming",
+        "photography"
+      ]
+    },
+    {
+      "id": "42",
+      "firstName": "James",
+      "lastName": "Martinez",
+      "email": "user42@example.com",
+      "isActive": true,
+      "age": 40,
+      "phone": "555-0042",
+      "address": "27 Maple Street",
+      "createdAt": "2024-04-20T18:15:42.776Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "orange",
+        "blue",
+        "red"
+      ],
+      "hobbies": [
+        "swimming",
+        "reading",
+        "photography",
+        "hiking"
+      ]
+    },
+    {
+      "id": "43",
+      "firstName": "Elijah",
+      "lastName": "Smith",
+      "email": "user43@example.com",
+      "isActive": true,
+      "age": 22,
+      "phone": "555-0043",
+      "address": "241 Washington Street",
+      "createdAt": "2024-05-17T22:33:24.783Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue",
+        "green",
+        "white"
+      ],
+      "hobbies": [
+        "reading",
+        "painting",
+        "gaming",
+        "cooking"
+      ]
+    },
+    {
+      "id": "44",
+      "firstName": "James",
+      "lastName": "Jones",
+      "email": "user44@example.com",
+      "isActive": true,
+      "age": 25,
+      "phone": "555-0044",
+      "address": "381 Lake Street",
+      "createdAt": "2025-02-20T09:11:11.494Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "yellow",
+        "red",
+        "blue"
+      ],
+      "hobbies": [
+        "reading",
+        "cooking",
+        "gaming",
+        "painting"
+      ]
+    },
+    {
+      "id": "45",
+      "firstName": "Charlotte",
+      "lastName": "Rodriguez",
+      "email": "user45@example.com",
+      "isActive": true,
+      "age": 47,
+      "phone": "555-0045",
+      "address": "33 Elm Street",
+      "createdAt": "2024-08-11T23:17:17.195Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "white"
+      ],
+      "hobbies": [
+        "gardening",
+        "traveling",
+        "gaming",
+        "swimming",
+        "hiking"
+      ]
+    },
+    {
+      "id": "46",
+      "firstName": "Sophia",
+      "lastName": "Brown",
+      "email": "user46@example.com",
+      "isActive": true,
+      "age": 48,
+      "phone": "555-0046",
+      "address": "370 Hill Street",
+      "createdAt": "2024-11-18T03:40:59.031Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue"
+      ],
+      "hobbies": [
+        "swimming",
+        "painting",
+        "cooking"
+      ]
+    },
+    {
+      "id": "47",
+      "firstName": "William",
+      "lastName": "Johnson",
+      "email": "user47@example.com",
+      "isActive": true,
+      "age": 52,
+      "phone": "555-0047",
+      "address": "472 Maple Street",
+      "createdAt": "2024-07-04T22:22:38.420Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "green"
+      ],
+      "hobbies": [
+        "cooking",
+        "gardening",
+        "reading",
+        "painting",
+        "traveling"
+      ]
+    },
+    {
+      "id": "48",
+      "firstName": "Emma",
+      "lastName": "Jones",
+      "email": "user48@example.com",
+      "isActive": false,
+      "age": 58,
+      "phone": "555-0048",
+      "address": "666 Oak Street",
+      "createdAt": "2024-08-03T11:58:01.826Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray"
+      ],
+      "hobbies": [
+        "reading",
+        "photography",
+        "hiking",
+        "traveling",
+        "gardening"
+      ]
+    },
+    {
+      "id": "49",
+      "firstName": "Olivia",
+      "lastName": "Brown",
+      "email": "user49@example.com",
+      "isActive": true,
+      "age": 59,
+      "phone": "555-0049",
+      "address": "705 Lake Street",
+      "createdAt": "2025-02-06T15:39:31.220Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "green",
+        "purple"
+      ],
+      "hobbies": [
+        "cooking",
+        "swimming"
+      ]
+    },
+    {
+      "id": "50",
+      "firstName": "William",
+      "lastName": "Smith",
+      "email": "user50@example.com",
+      "isActive": true,
+      "age": 27,
+      "phone": "555-0050",
+      "address": "591 Main Street",
+      "createdAt": "2024-06-15T18:33:35.374Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "blue"
+      ],
+      "hobbies": [
+        "gardening",
+        "traveling",
+        "reading"
+      ]
+    },
+    {
+      "id": "51",
+      "firstName": "Elijah",
+      "lastName": "Rodriguez",
+      "email": "user51@example.com",
+      "isActive": true,
+      "age": 55,
+      "phone": "555-0051",
+      "address": "369 Park Street",
+      "createdAt": "2024-03-10T08:11:34.738Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red"
+      ],
+      "hobbies": [
+        "photography",
+        "reading",
+        "cooking",
+        "gaming",
+        "painting"
+      ]
+    },
+    {
+      "id": "52",
+      "firstName": "Elijah",
+      "lastName": "Martinez",
+      "email": "user52@example.com",
+      "isActive": true,
+      "age": 21,
+      "phone": "555-0052",
+      "address": "411 Elm Street",
+      "createdAt": "2024-04-07T23:34:13.429Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "white"
+      ],
+      "hobbies": [
+        "reading",
+        "cooking",
+        "painting"
+      ]
+    },
+    {
+      "id": "53",
+      "firstName": "Ava",
+      "lastName": "Smith",
+      "email": "user53@example.com",
+      "isActive": false,
+      "age": 19,
+      "phone": "555-0053",
+      "address": "651 Oak Street",
+      "createdAt": "2025-02-17T20:50:59.364Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "orange"
+      ],
+      "hobbies": [
+        "cooking",
+        "dancing",
+        "hiking"
+      ]
+    },
+    {
+      "id": "54",
+      "firstName": "Sophia",
+      "lastName": "Miller",
+      "email": "user54@example.com",
+      "isActive": true,
+      "age": 49,
+      "phone": "555-0054",
+      "address": "680 Hill Street",
+      "createdAt": "2024-08-19T06:19:45.124Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "yellow",
+        "blue",
+        "red"
+      ],
+      "hobbies": [
+        "cooking",
+        "gardening",
+        "gaming",
+        "reading"
+      ]
+    },
+    {
+      "id": "55",
+      "firstName": "Noah",
+      "lastName": "Davis",
+      "email": "user55@example.com",
+      "isActive": true,
+      "age": 40,
+      "phone": "555-0055",
+      "address": "764 Cedar Street",
+      "createdAt": "2025-01-17T10:30:34.607Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "green"
+      ],
+      "hobbies": [
+        "painting",
+        "reading"
+      ]
+    },
+    {
+      "id": "56",
+      "firstName": "James",
+      "lastName": "Jones",
+      "email": "user56@example.com",
+      "isActive": true,
+      "age": 55,
+      "phone": "555-0056",
+      "address": "788 Washington Street",
+      "createdAt": "2024-12-18T05:39:04.833Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "blue"
+      ],
+      "hobbies": [
+        "traveling",
+        "gardening",
+        "reading",
+        "gaming",
+        "cooking"
+      ]
+    },
+    {
+      "id": "57",
+      "firstName": "Emma",
+      "lastName": "Miller",
+      "email": "user57@example.com",
+      "isActive": true,
+      "age": 38,
+      "phone": "555-0057",
+      "address": "652 Lake Street",
+      "createdAt": "2024-04-26T10:15:52.240Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "orange",
+        "white"
+      ],
+      "hobbies": [
+        "reading",
+        "gaming",
+        "cooking",
+        "painting",
+        "hiking"
+      ]
+    },
+    {
+      "id": "58",
+      "firstName": "William",
+      "lastName": "Brown",
+      "email": "user58@example.com",
+      "isActive": true,
+      "age": 29,
+      "phone": "555-0058",
+      "address": "567 Pine Street",
+      "createdAt": "2024-08-18T19:51:36.027Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "purple"
+      ],
+      "hobbies": [
+        "cooking",
+        "swimming"
+      ]
+    },
+    {
+      "id": "59",
+      "firstName": "Olivia",
+      "lastName": "Martinez",
+      "email": "user59@example.com",
+      "isActive": false,
+      "age": 19,
+      "phone": "555-0059",
+      "address": "726 Lake Street",
+      "createdAt": "2024-05-20T19:00:16.500Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "red"
+      ],
+      "hobbies": [
+        "cooking",
+        "reading"
+      ]
+    },
+    {
+      "id": "60",
+      "firstName": "Elijah",
+      "lastName": "Johnson",
+      "email": "user60@example.com",
+      "isActive": true,
+      "age": 56,
+      "phone": "555-0060",
+      "address": "857 Cedar Street",
+      "createdAt": "2025-01-05T06:04:00.817Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "white",
+        "red"
+      ],
+      "hobbies": [
+        "painting",
+        "reading",
+        "gaming"
+      ]
+    },
+    {
+      "id": "61",
+      "firstName": "Sophia",
+      "lastName": "Davis",
+      "email": "user61@example.com",
+      "isActive": true,
+      "age": 59,
+      "phone": "555-0061",
+      "address": "880 Oak Street",
+      "createdAt": "2024-07-29T05:47:42.644Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "green",
+        "blue",
+        "orange"
+      ],
+      "hobbies": [
+        "traveling",
+        "gardening",
+        "reading"
+      ]
+    },
+    {
+      "id": "62",
+      "firstName": "James",
+      "lastName": "Garcia",
+      "email": "user62@example.com",
+      "isActive": true,
+      "age": 23,
+      "phone": "555-0062",
+      "address": "812 Park Street",
+      "createdAt": "2024-06-17T13:42:22.063Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "green",
+        "white",
+        "blue"
+      ],
+      "hobbies": [
+        "cooking",
+        "gaming",
+        "reading",
+        "painting"
+      ]
+    },
+    {
+      "id": "63",
+      "firstName": "Liam",
+      "lastName": "Brown",
+      "email": "user63@example.com",
+      "isActive": false,
+      "age": 43,
+      "phone": "555-0063",
+      "address": "844 Main Street",
+      "createdAt": "2025-02-14T12:18:21.082Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "pink",
+        "red",
+        "orange"
+      ],
+      "hobbies": [
+        "reading",
+        "dancing"
+      ]
+    },
+    {
+      "id": "64",
+      "firstName": "Emma",
+      "lastName": "Rodriguez",
+      "email": "user64@example.com",
+      "isActive": false,
+      "age": 28,
+      "phone": "555-0064",
+      "address": "305 Cedar Street",
+      "createdAt": "2025-02-25T05:24:40.791Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "yellow",
+        "green"
+      ],
+      "hobbies": [
+        "painting",
+        "reading"
+      ]
+    },
+    {
+      "id": "65",
+      "firstName": "Sophia",
+      "lastName": "Brown",
+      "email": "user65@example.com",
+      "isActive": true,
+      "age": 39,
+      "phone": "555-0065",
+      "address": "304 Lake Street",
+      "createdAt": "2024-12-25T04:24:34.921Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "blue"
+      ],
+      "hobbies": [
+        "traveling",
+        "gardening"
+      ]
+    },
+    {
+      "id": "66",
+      "firstName": "Sophia",
+      "lastName": "Davis",
+      "email": "user66@example.com",
+      "isActive": false,
+      "age": 21,
+      "phone": "555-0066",
+      "address": "847 Cedar Street",
+      "createdAt": "2024-11-25T13:11:53.209Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "green",
+        "blue"
+      ],
+      "hobbies": [
+        "photography",
+        "cooking",
+        "traveling",
+        "gardening",
+        "swimming"
+      ]
+    },
+    {
+      "id": "67",
+      "firstName": "Emma",
+      "lastName": "Jones",
+      "email": "user67@example.com",
+      "isActive": true,
+      "age": 26,
+      "phone": "555-0067",
+      "address": "83 Lake Street",
+      "createdAt": "2024-04-23T15:14:44.970Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue",
+        "green"
+      ],
+      "hobbies": [
+        "gaming",
+        "reading",
+        "hiking",
+        "swimming",
+        "painting"
+      ]
+    },
+    {
+      "id": "68",
+      "firstName": "Liam",
+      "lastName": "Davis",
+      "email": "user68@example.com",
+      "isActive": true,
+      "age": 32,
+      "phone": "555-0068",
+      "address": "604 Park Street",
+      "createdAt": "2024-11-15T02:20:06.907Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "red",
+        "blue",
+        "green"
+      ],
+      "hobbies": [
+        "painting",
+        "reading",
+        "gardening",
+        "gaming"
+      ]
+    },
+    {
+      "id": "69",
+      "firstName": "Liam",
+      "lastName": "Davis",
+      "email": "user69@example.com",
+      "isActive": true,
+      "age": 69,
+      "phone": "555-0069",
+      "address": "345 Hill Street",
+      "createdAt": "2024-07-23T21:18:41.912Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "green",
+        "blue",
+        "red"
+      ],
+      "hobbies": [
+        "dancing",
+        "traveling"
+      ]
+    },
+    {
+      "id": "70",
+      "firstName": "Noah",
+      "lastName": "Garcia",
+      "email": "user70@example.com",
+      "isActive": true,
+      "age": 37,
+      "phone": "555-0070",
+      "address": "206 Elm Street",
+      "createdAt": "2024-10-25T16:48:21.584Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "red"
+      ],
+      "hobbies": [
+        "painting",
+        "gaming"
+      ]
+    },
+    {
+      "id": "71",
+      "firstName": "Ava",
+      "lastName": "Davis",
+      "email": "user71@example.com",
+      "isActive": true,
+      "age": 49,
+      "phone": "555-0071",
+      "address": "936 Park Street",
+      "createdAt": "2024-10-27T03:35:08.890Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "white",
+        "yellow"
+      ],
+      "hobbies": [
+        "dancing",
+        "traveling",
+        "gardening",
+        "hiking"
+      ]
+    },
+    {
+      "id": "72",
+      "firstName": "Sophia",
+      "lastName": "Smith",
+      "email": "user72@example.com",
+      "isActive": false,
+      "age": 41,
+      "phone": "555-0072",
+      "address": "146 Elm Street",
+      "createdAt": "2025-02-01T17:36:55.519Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "red",
+        "blue"
+      ],
+      "hobbies": [
+        "gardening",
+        "reading"
+      ]
+    },
+    {
+      "id": "73",
+      "firstName": "Emma",
+      "lastName": "Davis",
+      "email": "user73@example.com",
+      "isActive": true,
+      "age": 46,
+      "phone": "555-0073",
+      "address": "88 Hill Street",
+      "createdAt": "2024-12-16T15:53:40.442Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "blue",
+        "green",
+        "purple"
+      ],
+      "hobbies": [
+        "gaming",
+        "photography",
+        "cooking",
+        "hiking"
+      ]
+    },
+    {
+      "id": "74",
+      "firstName": "Noah",
+      "lastName": "Williams",
+      "email": "user74@example.com",
+      "isActive": true,
+      "age": 18,
+      "phone": "555-0074",
+      "address": "552 Oak Street",
+      "createdAt": "2024-10-01T15:02:40.653Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "purple"
+      ],
+      "hobbies": [
+        "cooking",
+        "painting",
+        "gardening"
+      ]
+    },
+    {
+      "id": "75",
+      "firstName": "Charlotte",
+      "lastName": "Brown",
+      "email": "user75@example.com",
+      "isActive": false,
+      "age": 31,
+      "phone": "555-0075",
+      "address": "76 Cedar Street",
+      "createdAt": "2024-07-28T10:26:09.526Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "blue",
+        "green",
+        "yellow"
+      ],
+      "hobbies": [
+        "gaming",
+        "swimming",
+        "hiking"
+      ]
+    },
+    {
+      "id": "76",
+      "firstName": "Olivia",
+      "lastName": "Smith",
+      "email": "user76@example.com",
+      "isActive": true,
+      "age": 67,
+      "phone": "555-0076",
+      "address": "624 Cedar Street",
+      "createdAt": "2024-05-17T00:24:11.834Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "yellow",
+        "red"
+      ],
+      "hobbies": [
+        "traveling",
+        "gardening",
+        "reading",
+        "cooking"
+      ]
+    },
+    {
+      "id": "77",
+      "firstName": "Sophia",
+      "lastName": "Brown",
+      "email": "user77@example.com",
+      "isActive": true,
+      "age": 19,
+      "phone": "555-0077",
+      "address": "294 Maple Street",
+      "createdAt": "2024-07-31T01:37:51.438Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white"
+      ],
+      "hobbies": [
+        "swimming",
+        "cooking",
+        "gaming",
+        "hiking"
+      ]
+    },
+    {
+      "id": "78",
+      "firstName": "Emma",
+      "lastName": "Smith",
+      "email": "user78@example.com",
+      "isActive": false,
+      "age": 53,
+      "phone": "555-0078",
+      "address": "62 Pine Street",
+      "createdAt": "2024-05-19T10:52:50.902Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white"
+      ],
+      "hobbies": [
+        "cooking",
+        "gardening",
+        "reading",
+        "traveling"
+      ]
+    },
+    {
+      "id": "79",
+      "firstName": "Emma",
+      "lastName": "Martinez",
+      "email": "user79@example.com",
+      "isActive": true,
+      "age": 45,
+      "phone": "555-0079",
+      "address": "935 Cedar Street",
+      "createdAt": "2024-06-23T02:20:24.560Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "white",
+        "red"
+      ],
+      "hobbies": [
+        "gaming",
+        "reading"
+      ]
+    },
+    {
+      "id": "80",
+      "firstName": "James",
+      "lastName": "Smith",
+      "email": "user80@example.com",
+      "isActive": true,
+      "age": 40,
+      "phone": "555-0080",
+      "address": "663 Main Street",
+      "createdAt": "2024-04-03T17:11:28.324Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "white"
+      ],
+      "hobbies": [
+        "reading",
+        "painting"
+      ]
+    },
+    {
+      "id": "81",
+      "firstName": "Elijah",
+      "lastName": "Garcia",
+      "email": "user81@example.com",
+      "isActive": true,
+      "age": 29,
+      "phone": "555-0081",
+      "address": "554 Lake Street",
+      "createdAt": "2024-09-22T12:29:11.579Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "green",
+        "blue"
+      ],
+      "hobbies": [
+        "gardening",
+        "traveling",
+        "cooking",
+        "gaming"
+      ]
+    },
+    {
+      "id": "82",
+      "firstName": "William",
+      "lastName": "Garcia",
+      "email": "user82@example.com",
+      "isActive": true,
+      "age": 22,
+      "phone": "555-0082",
+      "address": "275 Cedar Street",
+      "createdAt": "2024-10-23T21:23:26.737Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue",
+        "green",
+        "red"
+      ],
+      "hobbies": [
+        "dancing",
+        "photography",
+        "gardening",
+        "swimming"
+      ]
+    },
+    {
+      "id": "83",
+      "firstName": "William",
+      "lastName": "Smith",
+      "email": "user83@example.com",
+      "isActive": true,
+      "age": 52,
+      "phone": "555-0083",
+      "address": "263 Lake Street",
+      "createdAt": "2024-03-26T10:10:55.344Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "black",
+        "purple"
+      ],
+      "hobbies": [
+        "painting",
+        "cooking",
+        "gardening",
+        "traveling",
+        "reading"
+      ]
+    },
+    {
+      "id": "84",
+      "firstName": "James",
+      "lastName": "Smith",
+      "email": "user84@example.com",
+      "isActive": false,
+      "age": 18,
+      "phone": "555-0084",
+      "address": "710 Oak Street",
+      "createdAt": "2024-08-28T02:14:56.634Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "green",
+        "red"
+      ],
+      "hobbies": [
+        "cooking",
+        "hiking",
+        "swimming",
+        "photography"
+      ]
+    },
+    {
+      "id": "85",
+      "firstName": "Emma",
+      "lastName": "Brown",
+      "email": "user85@example.com",
+      "isActive": true,
+      "age": 22,
+      "phone": "555-0085",
+      "address": "902 Pine Street",
+      "createdAt": "2024-11-12T16:06:02.226Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "orange",
+        "red",
+        "purple"
+      ],
+      "hobbies": [
+        "gaming",
+        "swimming",
+        "painting",
+        "hiking"
+      ]
+    },
+    {
+      "id": "86",
+      "firstName": "Sophia",
+      "lastName": "Brown",
+      "email": "user86@example.com",
+      "isActive": true,
+      "age": 68,
+      "phone": "555-0086",
+      "address": "616 Oak Street",
+      "createdAt": "2024-03-15T09:29:00.973Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "white"
+      ],
+      "hobbies": [
+        "photography",
+        "hiking",
+        "swimming"
+      ]
+    },
+    {
+      "id": "87",
+      "firstName": "Emma",
+      "lastName": "Garcia",
+      "email": "user87@example.com",
+      "isActive": false,
+      "age": 41,
+      "phone": "555-0087",
+      "address": "568 Hill Street",
+      "createdAt": "2025-02-01T07:16:19.789Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "purple",
+        "gray",
+        "white"
+      ],
+      "hobbies": [
+        "reading",
+        "painting",
+        "cooking"
+      ]
+    },
+    {
+      "id": "88",
+      "firstName": "William",
+      "lastName": "Garcia",
+      "email": "user88@example.com",
+      "isActive": false,
+      "age": 26,
+      "phone": "555-0088",
+      "address": "84 Pine Street",
+      "createdAt": "2024-04-29T19:16:51.618Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white"
+      ],
+      "hobbies": [
+        "hiking",
+        "traveling",
+        "gardening"
+      ]
+    },
+    {
+      "id": "89",
+      "firstName": "Ava",
+      "lastName": "Smith",
+      "email": "user89@example.com",
+      "isActive": true,
+      "age": 33,
+      "phone": "555-0089",
+      "address": "626 Washington Street",
+      "createdAt": "2025-02-03T11:37:31.497Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue",
+        "purple",
+        "orange"
+      ],
+      "hobbies": [
+        "gaming",
+        "painting",
+        "reading"
+      ]
+    },
+    {
+      "id": "90",
+      "firstName": "Emma",
+      "lastName": "Garcia",
+      "email": "user90@example.com",
+      "isActive": true,
+      "age": 43,
+      "phone": "555-0090",
+      "address": "917 Pine Street",
+      "createdAt": "2025-01-13T02:40:38.111Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "green",
+        "pink",
+        "red"
+      ],
+      "hobbies": [
+        "gardening",
+        "reading"
+      ]
+    },
+    {
+      "id": "91",
+      "firstName": "Ava",
+      "lastName": "Brown",
+      "email": "user91@example.com",
+      "isActive": true,
+      "age": 66,
+      "phone": "555-0091",
+      "address": "824 Maple Street",
+      "createdAt": "2024-03-23T18:16:20.947Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "gray",
+        "white"
+      ],
+      "hobbies": [
+        "cooking",
+        "painting"
+      ]
+    },
+    {
+      "id": "92",
+      "firstName": "Emma",
+      "lastName": "Smith",
+      "email": "user92@example.com",
+      "isActive": true,
+      "age": 36,
+      "phone": "555-0092",
+      "address": "59 Elm Street",
+      "createdAt": "2024-07-04T21:23:01.402Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "green",
+        "blue",
+        "red"
+      ],
+      "hobbies": [
+        "gaming",
+        "hiking"
+      ]
+    },
+    {
+      "id": "93",
+      "firstName": "Olivia",
+      "lastName": "Martinez",
+      "email": "user93@example.com",
+      "isActive": true,
+      "age": 38,
+      "phone": "555-0093",
+      "address": "781 Hill Street",
+      "createdAt": "2024-06-08T21:38:53.181Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white",
+        "blue",
+        "gray"
+      ],
+      "hobbies": [
+        "cooking",
+        "gaming"
+      ]
+    },
+    {
+      "id": "94",
+      "firstName": "Charlotte",
+      "lastName": "Rodriguez",
+      "email": "user94@example.com",
+      "isActive": true,
+      "age": 66,
+      "phone": "555-0094",
+      "address": "168 Cedar Street",
+      "createdAt": "2024-05-28T20:23:52.514Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "gray",
+        "green"
+      ],
+      "hobbies": [
+        "swimming",
+        "traveling",
+        "gardening"
+      ]
+    },
+    {
+      "id": "95",
+      "firstName": "Liam",
+      "lastName": "Rodriguez",
+      "email": "user95@example.com",
+      "isActive": false,
+      "age": 55,
+      "phone": "555-0095",
+      "address": "940 Hill Street",
+      "createdAt": "2024-07-28T07:24:52.553Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "red",
+        "purple"
+      ],
+      "hobbies": [
+        "reading",
+        "gardening"
+      ]
+    },
+    {
+      "id": "96",
+      "firstName": "Ava",
+      "lastName": "Johnson",
+      "email": "user96@example.com",
+      "isActive": true,
+      "age": 63,
+      "phone": "555-0096",
+      "address": "178 Oak Street",
+      "createdAt": "2024-11-27T03:53:10.888Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "purple",
+        "white"
+      ],
+      "hobbies": [
+        "gaming",
+        "photography"
+      ]
+    },
+    {
+      "id": "97",
+      "firstName": "Ava",
+      "lastName": "Martinez",
+      "email": "user97@example.com",
+      "isActive": false,
+      "age": 45,
+      "phone": "555-0097",
+      "address": "192 Main Street",
+      "createdAt": "2024-04-25T18:43:28.135Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "blue"
+      ],
+      "hobbies": [
+        "reading",
+        "dancing",
+        "cooking",
+        "gaming"
+      ]
+    },
+    {
+      "id": "98",
+      "firstName": "James",
+      "lastName": "Miller",
+      "email": "user98@example.com",
+      "isActive": true,
+      "age": 57,
+      "phone": "555-0098",
+      "address": "233 Maple Street",
+      "createdAt": "2024-11-01T07:24:28.301Z",
+      "isPremiumMember": true,
+      "favoriteColors": [
+        "green",
+        "gray"
+      ],
+      "hobbies": [
+        "photography",
+        "reading"
+      ]
+    },
+    {
+      "id": "99",
+      "firstName": "William",
+      "lastName": "Rodriguez",
+      "email": "user99@example.com",
+      "isActive": false,
+      "age": 61,
+      "phone": "555-0099",
+      "address": "226 Pine Street",
+      "createdAt": "2025-02-20T14:27:22.610Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "white"
+      ],
+      "hobbies": [
+        "cooking",
+        "photography",
+        "painting",
+        "hiking"
+      ]
+    },
+    {
+      "id": "100",
+      "firstName": "Elijah",
+      "lastName": "Jones",
+      "email": "user100@example.com",
+      "isActive": false,
+      "age": 28,
+      "phone": "555-0100",
+      "address": "629 Park Street",
+      "createdAt": "2025-02-02T06:38:24.422Z",
+      "isPremiumMember": false,
+      "favoriteColors": [
+        "gray",
+        "yellow",
+        "pink"
+      ],
+      "hobbies": [
+        "dancing",
+        "photography",
+        "painting",
+        "gaming",
+        "reading"
+      ]
+    }
+  ]
+}

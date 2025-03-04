@@ -9,7 +9,6 @@ import { createFilter } from './filters/create-filter'
 import { arrayFilterField, arrayFilterValue } from './filters/filter-fields/array-filter'
 import { booleanFilterField } from './filters/filter-fields/boolean-filter'
 import { textFilterField } from './filters/filter-fields/text-filter'
-import { arrayFilterCommaSerializer } from './filters/serializers'
 import { FilterFieldName } from './filters/types'
 
 @Component({
@@ -26,23 +25,23 @@ import { FilterFieldName } from './filters/types'
 	],
 	template: `
 		<div class="px-4 py-2 flex items-center gap-4 border-b border-gray-500">
-			<app-text-filter-field [filterField]="filter.fields.q" placeholder="Buscar..." />
+			<app-text-filter-field [filterField]="filter.fields.firstName" placeholder="Buscar..." />
 
 			<mat-divider vertical [style.height.px]="40" />
 
 			<app-boolean-filter-field
-				[fieldName]="FilterFieldName.visible"
-				[filterField]="filter.fields.visible"
-				label="Visible" />
+				[fieldName]="FilterFieldName.isActive"
+				[filterField]="filter.fields.isActive"
+				label="Is active?" />
 
 			<mat-divider vertical [style.height.px]="40" />
 
 			<mat-button-toggle-group
 				hideMultipleSelectionIndicator
 				multiple
-				[value]="filter.fields.status.value()"
-				(change)="filter.fields.status.toggleValue($event.source.value)">
-				@for (value of availableStatuses; track $index) {
+				[value]="filter.fields.favoriteColors.value()"
+				(change)="filter.fields.favoriteColors.toggleValue($event.source.value)">
+				@for (value of availableColors; track $index) {
 					<mat-button-toggle [value]="value">
 						{{ value.value.toString() | uppercase }}
 					</mat-button-toggle>
@@ -77,15 +76,12 @@ export class AppComponent {
 	protected readonly FilterFieldName = FilterFieldName
 
 	filter = createFilter({
-		q: textFilterField(),
-		search: textFilterField(),
-		visible: booleanFilterField(),
-		status: arrayFilterField({ serializer: arrayFilterCommaSerializer }),
+		firstName: textFilterField(),
+		isActive: booleanFilterField(),
+		favoriteColors: arrayFilterField(),
 	})
 
-	data = this.filter.data('https://api.example.com')
+	data = this.filter.data('http://localhost:3000/users')
 
-	availableStatuses = ['pending', 'progress', 'done'].map(value =>
-		arrayFilterValue({ name: value, value })
-	)
+	availableColors = ['red', 'blue', 'green'].map(value => arrayFilterValue({ name: value, value }))
 }
